@@ -194,7 +194,8 @@
                 Background="#006064"
                 Foreground="#4caf50"
                 FontSize="22"
-                Click="LoginButton_Click"/>
+                
+                />
 
 
     </Grid>

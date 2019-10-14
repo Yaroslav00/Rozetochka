@@ -1,9 +1,12 @@
-﻿using DataAccess;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using DataAccess;
+using Business.Interfaces;
+using Business.Services;
 
 namespace Rozetochka
 {
@@ -14,6 +17,8 @@ namespace Rozetochka
     {
         private bool isUserAdmin = true;
         private ObservableCollection<Goods> goods { get; set; }
+
+        private readonly ICategoryService _categoryService = new CategoryService();
 
         public MainWindow()
         {
@@ -29,14 +34,15 @@ namespace Rozetochka
                 new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")
             };
 
-            categoriesList.ItemsSource = new ObservableCollection<Category>
-            {
-                new Category("Phones"),
-                new Category("GPUs"),
-                new Category("Monitors"),
-                new Category("Perifirals"),
-                new Category("Laptops"),
-            };
+            categoriesList.ItemsSource = _categoryService.GetCategories();
+            //    new ObservableCollection<Category>
+            //{
+            //    new Category("Phones"),
+            //    new Category("GPUs"),
+            //    new Category("Monitors"),
+            //    new Category("Perifirals"),
+            //    new Category("Laptops"),
+            //};
 
             if (isUserAdmin)
             {
@@ -47,9 +53,10 @@ namespace Rozetochka
             {
                 Categories.Visibility = Visibility.Collapsed;
             }
-            this.DataContext = SessionData.Username;
-            SessionData.UsernameChangedEvent += this.HandleUsernameChanged;
+        //    this.DataContext = SessionData.Username;
+        //    SessionData.UsernameChangedEvent += this.HandleUsernameChanged;
         }
+
 
         private void HandleUsernameChanged(string username)
         {
@@ -84,19 +91,19 @@ namespace Rozetochka
             loginLabel.FontWeight = FontWeights.Normal;
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (SessionData.Username == null)
-            {
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-            }
-            else
-            {
-                SessionData.Username = null;
-                SessionData.Password = null;
-            }
-        }
+        //private void LoginButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (SessionData.Username == null)
+        //    {
+        //        LoginWindow loginWindow = new LoginWindow();
+        //        loginWindow.ShowDialog();
+        //    }
+        //    else
+        //    {
+        //        SessionData.Username = null;
+        //        SessionData.Password = null;
+        //    }
+        //}
 
         private void goodsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
