@@ -5,6 +5,6 @@ namespace Business.Interfaces
 {
     public interface IGoodsService
     {
-        List<GoodDto> GetGoods(int? categoryId);
+        List<GoodDto> GetGoods(int? categoryId, string orderBy);
     }
 }

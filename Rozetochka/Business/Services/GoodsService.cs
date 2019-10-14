@@ -7,9 +7,9 @@ namespace Business.Services
 {
     public class GoodsService: IGoodsService
     {
-        public List<GoodDto> GetGoods(int? categoryId)
+        public List<GoodDto> GetGoods(int? categoryId, string orderBy)
         {
-            return ItemRepository.GetItems(categoryId);
+            return ItemRepository.GetItems(categoryId, orderBy);
         }
     }
 }

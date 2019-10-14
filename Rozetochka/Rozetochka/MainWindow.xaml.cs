@@ -7,6 +7,7 @@ using System.Windows.Media;
 using DataAccess;
 using Business.Interfaces;
 using Business.Services;
+using System;
 
 namespace Rozetochka
 {
@@ -20,14 +21,14 @@ namespace Rozetochka
 
         private readonly ICategoryService _categoryService = new CategoryService();
         private readonly IGoodsService _goodsService = new GoodsService();
-
+        private string orderBy = "За алфавітом";
         public MainWindow()
         {
             InitializeComponent();
 
             //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
             //щоб отримати всі продукти передаємо null
-            goodsList.ItemsSource = _goodsService.GetGoods(null); 
+            goodsList.ItemsSource = _goodsService.GetGoods(null, orderBy); 
 
             categoriesList.ItemsSource = _categoryService.GetCategories();
 
@@ -99,7 +100,17 @@ namespace Rozetochka
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ComboBoxItem selectedItem = (ComboBoxItem)orderByBox.SelectedItem;
+            try
+            {
+                orderBy = selectedItem.Content.ToString().Replace("System.Windows.Controls.Label: ", "");
+                goodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
+                //InitializeComponent();
+            }
+            catch (Exception)
+            {
+                //object still loading
+            }
         }
     }
 }
