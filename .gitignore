@@ -1,2 +1,5 @@
 *.ide
 *.lock
+Rozetochka/Rozetochka/obj/Debug/
+Rozetochka/.vs/
+Rozetochka/Rozetochka/bin

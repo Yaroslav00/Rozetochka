@@ -19,30 +19,17 @@ namespace Rozetochka
         private ObservableCollection<Goods> goods { get; set; }
 
         private readonly ICategoryService _categoryService = new CategoryService();
+        private readonly IGoodsService _goodsService = new GoodsService();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            goodsList.ItemsSource = new ObservableCollection<Goods>
-            {
-                new Goods(1,"iPhone X", 799, "expensive as shit"),
-                new Goods(2,"Macbook Pro 2019", 2199, "macbook"),
-                new Goods(3,"One plus 7 pro", 699, "oneplus"),
-                new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
-                new Goods(5,"RX 580", 799, "simple radeon"),
-                new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")
-            };
+            //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
+            //щоб отримати всі продукти передаємо null
+            goodsList.ItemsSource = _goodsService.GetGoods(null); 
 
             categoriesList.ItemsSource = _categoryService.GetCategories();
-            //    new ObservableCollection<Category>
-            //{
-            //    new Category("Phones"),
-            //    new Category("GPUs"),
-            //    new Category("Monitors"),
-            //    new Category("Perifirals"),
-            //    new Category("Laptops"),
-            //};
 
             if (isUserAdmin)
             {
