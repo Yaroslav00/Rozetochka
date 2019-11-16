@@ -131,8 +131,11 @@
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Dto\CartDto.cs" />
     <Compile Include="Dto\CategoryDto.cs" />
     <Compile Include="Dto\GoodDto.cs" />
+    <Compile Include="Dto\OrderDto.cs" />
+    <Compile Include="Dto\OrderedGoodDto.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Goods.cs" />
     <Compile Include="Migrations\201910011921461_DataMigration.cs" />
@@ -151,6 +154,8 @@
     <Compile Include="Order.cs" />
     <Compile Include="Repository\CategotyRepository.cs" />
     <Compile Include="Repository\ItemRepository.cs" />
+    <Compile Include="Repository\OrderedGoodRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
