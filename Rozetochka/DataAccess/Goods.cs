@@ -23,6 +23,14 @@ namespace DataAccess
         [ForeignKey("Category")]
         public int CategoryID { get; set; }
 
-        public virtual Category Category { get; set; }        
+        public virtual Category Category { get; set; }  
+        
+        public Goods(int ID, string Name, decimal Price, string Description)
+        {
+            this.ID = ID;
+            this.Name = Name;
+            this.Price = Price;
+            this.Description = Description;
+        }
     }
 }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tapac\source\repos\Rozetochka\Rozetochka\obj\Debug\
+C:\Users\SirStrash\Source\Repos\Rozetochka\Rozetochka\Rozetochka\obj\Debug\
 Rozetochka
 none
 false
 DEBUG;TRACE
-C:\Users\Tapac\source\repos\Rozetochka\Rozetochka\App.xaml
-11151548125
+C:\Users\SirStrash\Source\Repos\Rozetochka\Rozetochka\Rozetochka\App.xaml
+22037783069
 
-91818808258
+7296826663
 131569487696
-MainWindow.xaml;
+LoginWindow.xaml;MainWindow.xaml;
 
-False
+True
 
