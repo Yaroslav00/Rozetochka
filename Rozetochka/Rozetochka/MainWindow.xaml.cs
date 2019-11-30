@@ -1,9 +1,13 @@
-﻿using DataAccess;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using DataAccess;
+using Business.Interfaces;
+using Business.Services;
+using System;
 
 namespace Rozetochka
 {
@@ -15,28 +19,18 @@ namespace Rozetochka
         private bool isUserAdmin = true;
         private ObservableCollection<Goods> goods { get; set; }
 
+        private readonly ICategoryService _categoryService = new CategoryService();
+        private readonly IGoodsService _goodsService = new GoodsService();
+        private string orderBy = "За алфавітом";
         public MainWindow()
         {
             InitializeComponent();
 
-            goodsList.ItemsSource = new ObservableCollection<Goods>
-            {
-                new Goods(1,"iPhone X", 799, "expensive as shit"),
-                new Goods(2,"Macbook Pro 2019", 2199, "macbook"),
-                new Goods(3,"One plus 7 pro", 699, "oneplus"),
-                new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
-                new Goods(5,"RX 580", 799, "simple radeon"),
-                new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")
-            };
+            //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
+            //щоб отримати всі продукти передаємо null
+            goodsList.ItemsSource = _goodsService.GetGoods(null, orderBy); 
 
-            categoriesList.ItemsSource = new ObservableCollection<Category>
-            {
-                new Category("Phones"),
-                new Category("GPUs"),
-                new Category("Monitors"),
-                new Category("Perifirals"),
-                new Category("Laptops"),
-            };
+            categoriesList.ItemsSource = _categoryService.GetCategories();
 
             if (isUserAdmin)
             {
@@ -47,9 +41,10 @@ namespace Rozetochka
             {
                 Categories.Visibility = Visibility.Collapsed;
             }
-            this.DataContext = SessionData.Username;
-            SessionData.UsernameChangedEvent += this.HandleUsernameChanged;
+        //    this.DataContext = SessionData.Username;
+        //    SessionData.UsernameChangedEvent += this.HandleUsernameChanged;
         }
+
 
         private void HandleUsernameChanged(string username)
         {
@@ -84,19 +79,19 @@ namespace Rozetochka
             loginLabel.FontWeight = FontWeights.Normal;
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (SessionData.Username == null)
-            {
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-            }
-            else
-            {
-                SessionData.Username = null;
-                SessionData.Password = null;
-            }
-        }
+        //private void LoginButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (SessionData.Username == null)
+        //    {
+        //        LoginWindow loginWindow = new LoginWindow();
+        //        loginWindow.ShowDialog();
+        //    }
+        //    else
+        //    {
+        //        SessionData.Username = null;
+        //        SessionData.Password = null;
+        //    }
+        //}
 
         private void goodsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -105,7 +100,17 @@ namespace Rozetochka
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ComboBoxItem selectedItem = (ComboBoxItem)orderByBox.SelectedItem;
+            try
+            {
+                orderBy = selectedItem.Content.ToString().Replace("System.Windows.Controls.Label: ", "");
+                goodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
+                //InitializeComponent();
+            }
+            catch (Exception)
+            {
+                //object still loading
+            }
         }
     }
 }
