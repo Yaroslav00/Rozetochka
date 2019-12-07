@@ -24,6 +24,9 @@
                 UsernameChangedEvent(_username);
             }
         }
+
+        public static int ID { get; set; }
+        public static bool IsAdmin { get; set; }
         public static string Password { get; set; }
     }
 }
