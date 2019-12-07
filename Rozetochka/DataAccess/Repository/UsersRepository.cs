@@ -22,7 +22,7 @@ namespace DataAccess.Repository
                         UserName = u.UserName,
                         IsAdmin = u.IsAdmin
                     }).FirstOrDefaultAsync();
-                return user;
+                return user?? UserDto.ErrorUser;
             }
         }
 
@@ -32,7 +32,7 @@ namespace DataAccess.Repository
             {
                 if (await dbContext.ShopUsers.CountAsync(u => u.UserName == username) > 0)
                 {
-                    return null;
+                    return UserDto.ErrorUser;
                 }
                 var registeredUser = new User
                 {

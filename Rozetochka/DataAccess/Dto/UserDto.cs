@@ -13,5 +13,10 @@ namespace DataAccess.Dto
         public string UserName { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public static readonly UserDto ErrorUser = new UserDto
+        {
+            ID = -1
+        };
     }
 }
