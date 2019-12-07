@@ -258,8 +258,7 @@
                             Width="140"
                             Background="#4caf50"
                             Foreground="White"
-                            Margin="0,20,0,0" Click="Button_Click"/>
-
+                            Margin="0,20,0,0"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

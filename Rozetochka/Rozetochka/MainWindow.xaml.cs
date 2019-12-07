@@ -88,17 +88,17 @@ namespace Rozetochka
             },
         };
 
-            cartedGoods.ItemsSource = new ObservableCollection<CartedGoodDTO>
+            cartedGoods.ItemsSource = new ObservableCollection<CartedGoodDto>
             {
-                new CartedGoodDTO(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDTO(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDTO(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
-                new CartedGoodDTO(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDTO(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDTO(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
-                new CartedGoodDTO(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDTO(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDTO(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
+                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
+                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
+                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
+                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
+                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
+                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
+                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
+                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
+                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
             };
 
             AddCategory.Visibility = Visibility.Collapsed;
@@ -176,19 +176,19 @@ namespace Rozetochka
             loginLabel.FontWeight = FontWeights.Normal;
         }
 
-        //private void LoginButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (SessionData.Username == null)
-        //    {
-        //        LoginWindow loginWindow = new LoginWindow();
-        //        loginWindow.ShowDialog();
-        //    }
-        //    else
-        //    {
-        //        SessionData.Username = null;
-        //        SessionData.Password = null;
-        //    }
-        //}
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SessionData.Username == null)
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+            }
+            else
+            {
+                SessionData.Username = null;
+                SessionData.Password = null;
+            }
+        }
 
         private void AddGoodButton_Click(object sender, RoutedEventArgs e)
         {
@@ -218,5 +218,11 @@ namespace Rozetochka
                 //object still loading
             }
         }
+    }
+
+    public class CartedGoodDto
+    {
+        public int Amount { get; set; }
+        public  Goods Goods { get; set; }
     }
 }
