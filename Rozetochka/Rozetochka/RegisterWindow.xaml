@@ -49,7 +49,7 @@
             <Label Content="Логін" HorizontalAlignment="Left" Margin="63,126,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="Пароль" HorizontalAlignment="Left" Margin="63,171,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Name="Test" HorizontalAlignment="Left" Margin="104,238,0,0" VerticalAlignment="Top" Foreground="#4caf50"/>
-        <PasswordBox x:Name="Password_Copy" HorizontalAlignment="Left" Height="20" Margin="63,248,0,0" VerticalAlignment="Top"
+        <PasswordBox Name="PasswordRepeat" HorizontalAlignment="Left" Height="20" Margin="63,248,0,0" VerticalAlignment="Top"
             Width="180" />
         <Label Content="Пароль ще раз" HorizontalAlignment="Left" Margin="63,220,0,0" VerticalAlignment="Top" Foreground="White"/>
     </Grid>
