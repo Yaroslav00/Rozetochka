@@ -136,6 +136,7 @@
     <Compile Include="Dto\GoodDto.cs" />
     <Compile Include="Dto\OrderDto.cs" />
     <Compile Include="Dto\OrderedGoodDto.cs" />
+    <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Goods.cs" />
     <Compile Include="Migrations\201910011921461_DataMigration.cs" />
@@ -156,6 +157,8 @@
     <Compile Include="Repository\ItemRepository.cs" />
     <Compile Include="Repository\OrderedGoodRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Repository\UsersRepository.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
