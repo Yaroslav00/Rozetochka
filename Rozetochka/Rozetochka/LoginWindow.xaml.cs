@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using System.Windows;
 using Business.Interfaces;
 using Business.Services;
@@ -12,6 +13,7 @@ namespace Rozetochka
     public partial class LoginWindow : Window
     {
         private IUserService _userService;
+
         public LoginWindow()
         {
             _userService = new UserService();
@@ -20,19 +22,12 @@ namespace Rozetochka
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var loginedUser = await _userService.Login(Username.Text, Password.Password);
-
-            if (loginedUser != UserDto.ErrorUser)
+            if (!await AreUserCredentialsValid(Username.Text, Password.Password))
             {
-                SessionData.Username = Username.Text;
-                SessionData.Password = Password.Password;
-                SessionData.ID = loginedUser.ID;
-                SessionData.IsAdmin = loginedUser.IsAdmin;
-                this.Close();
-            }
-            else
-            {
-                //хендлим невірні креди
+                MessageBox.Show("Невірний логін або пароль",
+                    "Помилка авторизації",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -41,6 +36,26 @@ namespace Rozetochka
             this.Close();
             RegisterWindow registerWindow = new RegisterWindow();
             registerWindow.ShowDialog();
+        }
+
+        private async Task<bool> AreUserCredentialsValid(string username, string password)
+        {
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                var loginedUser = await _userService.Login(Username.Text, Password.Password);
+
+                if (loginedUser != UserDto.ErrorUser)
+                {
+                    SessionData.Username = Username.Text;
+                    SessionData.Password = Password.Password;
+                    SessionData.ID = loginedUser.ID;
+                    SessionData.IsAdmin = loginedUser.IsAdmin;
+                    this.Close();
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
     }
 }

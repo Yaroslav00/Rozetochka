@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using Business.Interfaces;
 using Business.Services;
 using DataAccess.Dto;
@@ -19,7 +20,26 @@ namespace Rozetochka
 
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Password.Password == Password_Copy.Password && !string.IsNullOrEmpty(Username.Text))
+
+            if (await AreUserCredentialsValid(Password.Password, PasswordRepeat.Password, Username.Text))
+            {
+                MessageBox.Show($"Ви успішно зареєструвалися. Вітаємо у нашій Розеточці, {Username.Text}!",
+                    "Вітаємо!",
+                    MessageBoxButton.OK);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Помилка реєстрації",
+                    "Помилка реєстрації",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+        
+        private async Task<bool> AreUserCredentialsValid(string password, string passwordRepeat, string username)
+        {
+            if (password.Equals(passwordRepeat) && !string.IsNullOrEmpty(username))
             {
                 var registeredUser = await _userService.Register(Username.Text, Password.Password);
                 if (registeredUser != UserDto.ErrorUser)
@@ -28,13 +48,11 @@ namespace Rozetochka
                     SessionData.Password = Password.Password;
                     SessionData.ID = registeredUser.ID;
                     SessionData.IsAdmin = registeredUser.IsAdmin;
-                    this.Close();
+                    return true;
                 }
-                else
-                {
-                    //хендлим невірні креди
-                }
+                return false;
             }
+            return false;
         }
     }
 }
