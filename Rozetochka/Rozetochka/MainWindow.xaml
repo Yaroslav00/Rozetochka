@@ -39,7 +39,7 @@
                             Foreground="White"
                             Click="AddGoodButton_Click"/>
                         <Label Content="Впорядкувати"  Height="30px"/>
-                        <ComboBox 
+                        <ComboBox x:Name="orderByBox" 
                             Width="180" 
                             SelectionChanged="ComboBox_SelectionChanged" 
                             Height="40"

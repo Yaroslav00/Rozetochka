@@ -140,7 +140,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -150,14 +149,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="outlet.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{e066ab07-b24f-4ed2-9d43-1fb3af4815ff}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{708546b1-4cb4-4276-86d5-2789b05f290b}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
+    <ItemGroup>
+        <Resource Include="outlet.png" />
+    </ItemGroup>
   <ItemGroup>
     <Resource Include="Placeholder.png" />
   </ItemGroup>
