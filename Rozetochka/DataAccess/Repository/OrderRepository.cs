@@ -58,10 +58,19 @@ namespace DataAccess.Repository
             }
         }
 
-        public static async Task UpdateOrderPrice(int orderId, decimal price)
+        public static async Task UpdateOrderPrice(int orderId)
         {
             using (var dbContext = new ApplicationDbContext())
             {
+                var sumAllItemsInCart = await dbContext.PurchaseGoods.Where(p => p.OrderID.Equals(orderId)).ToListAsync();
+
+                decimal price = 0;
+
+                sumAllItemsInCart.ForEach(i =>
+                {
+                    price += i.Amount*i.CurrentPrice;
+                });
+
                 var orderDto = await dbContext.Purchases.Select(p => new OrderDto
                 {
                     PaymentStatus = p.PaymentStatus,

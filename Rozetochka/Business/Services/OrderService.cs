@@ -45,7 +45,7 @@ namespace Business.Services
 
             var orderedGood = await OrderedGoodRepository.AddToOrderedGood(goodId, amount, buyerId, orderId, totalPrice);
 
-            await OrderRepository.UpdateOrderPrice(orderId,orderedGood.CurrentPrice * orderedGood.Amount);
+            await OrderRepository.UpdateOrderPrice(orderId);
 
             return orderedGood;
         }
