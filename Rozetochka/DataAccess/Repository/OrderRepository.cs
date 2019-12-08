@@ -13,14 +13,6 @@ namespace DataAccess.Repository
 {
     public static class OrderRepository
     {
-        public static async Task<decimal> GetOrderTotalPrice(int orderId)
-        {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                return await dbContext.PurchaseGoods.Where(p => p.OrderID == orderId).SumAsync(p => p.CurrentPrice * p.Amount);
-            }
-        }
-
         public static int CreateNewOrder()
         {
             using (var dbContext = new ApplicationDbContext())
@@ -39,7 +31,7 @@ namespace DataAccess.Repository
             }
         }
 
-        public static int CreateNewOrderAsync(int buyerId)
+        public static int CreateNewOrder(int buyerId)
         {
             using (var dbContext = new ApplicationDbContext())
             {

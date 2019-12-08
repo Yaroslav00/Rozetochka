@@ -12,15 +12,6 @@ namespace DataAccess.Repository
 {
     public static class OrderedGoodRepository
     {
-        public static async Task<int> GetOrderedGoodAmount(int orderId, int goodId)
-        {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                return await dbContext.PurchaseGoods.Where(p => p.OrderID.Equals(orderId) && p.GoodsID.Equals(goodId))
-                    .Select(p => p.Amount).FirstOrDefaultAsync();
-            }
-        }
-
         public static async Task<OrderedGoodDto> AddToOrderedGood(int goodId, int amount, int buyerId, int orderId, decimal totalPrice)
         {
             using (var dbContext = new ApplicationDbContext())

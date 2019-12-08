@@ -34,14 +34,17 @@ namespace DataAccess.Repository
                 {
                     return UserDto.ErrorUser;
                 }
+
                 var registeredUser = new User
                 {
                     IsAdmin = false,
                     Password = password,
                     UserName = username
                 };
+
                 dbContext.ShopUsers.Add(registeredUser);
                 await dbContext.SaveChangesAsync();
+
                 return new UserDto
                 {
                     ID = registeredUser.ID,
