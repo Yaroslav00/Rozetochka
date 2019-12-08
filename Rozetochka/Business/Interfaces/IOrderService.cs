@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DataAccess.Dto;
 
 namespace Business.Interfaces
@@ -9,6 +10,8 @@ namespace Business.Interfaces
 
         Task<decimal> GetOrderTotalPrice(int orderId);
 
-        Task<CartDto> GetCart(int orderId);
+        CartDto GetCart(int orderId);
+
+        List<OrderedGoodDto> GetAllOrderedGoodsByBuyerId(int buyerId);
     }
 }

@@ -46,10 +46,10 @@ namespace Rozetochka
 
                 if (loginedUser != UserDto.ErrorUser)
                 {
-                    SessionData.Username = Username.Text;
                     SessionData.Password = Password.Password;
                     SessionData.ID = loginedUser.ID;
                     SessionData.IsAdmin = loginedUser.IsAdmin;
+                    SessionData.Username = Username.Text;
                     this.Close();
                     return true;
                 }

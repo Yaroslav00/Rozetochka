@@ -16,8 +16,6 @@ namespace DataAccess
         [ForeignKey("Order")]
         public int OrderID { get; set; }
 
-        public int BuyerID { get; set; }
-
         public decimal CurrentPrice { get; set; }
 
         public virtual Goods Goods { get; set; }

@@ -7,8 +7,6 @@ namespace Rozetochka
     /// </summary>
     public partial class CategoryWindow : Window
     {
-
-
         public CategoryWindow()
         {
             InitializeComponent();

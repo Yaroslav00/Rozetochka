@@ -1,6 +1,8 @@
 ﻿using DataAccess;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Business.Interfaces;
+using Business.Services;
 
 namespace Rozetochka
 {
@@ -9,10 +11,10 @@ namespace Rozetochka
     /// </summary>
     public partial class GoodWindow : Window
     {
-
-
+        private readonly IOrderService _orderService;
         public GoodWindow()
         {
+            _orderService = new OrderService();
             InitializeComponent();
 
             CategorySelect.ItemsSource = new ObservableCollection<Category>

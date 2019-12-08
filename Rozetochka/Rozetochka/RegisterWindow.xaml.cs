@@ -44,10 +44,10 @@ namespace Rozetochka
                 var registeredUser = await _userService.Register(Username.Text, Password.Password);
                 if (registeredUser != UserDto.ErrorUser)
                 {
-                    SessionData.Username = registeredUser.UserName;
                     SessionData.Password = Password.Password;
                     SessionData.ID = registeredUser.ID;
                     SessionData.IsAdmin = registeredUser.IsAdmin;
+                    SessionData.Username = registeredUser.UserName;
                     return true;
                 }
                 return false;

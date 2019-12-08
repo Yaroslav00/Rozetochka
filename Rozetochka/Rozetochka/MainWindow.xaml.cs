@@ -10,6 +10,8 @@ using DataAccess;
 using Business.Interfaces;
 using Business.Services;
 using System;
+using System.Runtime.CompilerServices;
+using DataAccess.Dto;
 
 namespace Rozetochka
 {
@@ -22,84 +24,13 @@ namespace Rozetochka
 
         private readonly ICategoryService _categoryService = new CategoryService();
         private readonly IGoodsService _goodsService = new GoodsService();
+        private readonly IOrderService _orderService = new OrderService();
         private string orderBy = "За алфавітом";
         public MainWindow()
         {
             InitializeComponent();
 
-            //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
-            //щоб отримати всі продукти передаємо null
-            goodsList.ItemsSource = _goodsService.GetGoods(null, orderBy); 
-
-            categoriesList.ItemsSource = _categoryService.GetCategories();
-
-            ordersList.ItemsSource = new ObservableCollection<Order>
-            {
-                new Order{ID = 1,
-                    Data = DateTime.Now,
-                    TotalPrice = 1000,
-                    PaymentStatus = true,
-                    OrderedGood=new System.Collections.Generic.List<OrderedGood>(){
-                        new OrderedGood(){
-                            Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
-                            Amount = 2,
-                            CurrentPrice = 1500
-                        },
-                        new OrderedGood(){
-                            Goods = new Goods(5,"RX 580", 799, "simple radeon"),
-                            Amount = 3,
-                            CurrentPrice = 799
-                        },
-                },
-            },
-                new Order{ID = 1,
-                    Data = DateTime.Now,
-                    TotalPrice = 1000,
-                    PaymentStatus = true,
-                    OrderedGood=new System.Collections.Generic.List<OrderedGood>(){
-                        new OrderedGood(){
-                            Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
-                            Amount = 2,
-                            CurrentPrice = 1500
-                        },
-                        new OrderedGood(){
-                            Goods = new Goods(5,"RX 580", 799, "simple radeon"),
-                            Amount = 3,
-                            CurrentPrice = 799
-                        },
-                },
-            },
-                new Order{ID = 1,
-                    Data = DateTime.Now,
-                    TotalPrice = 1000,
-                    PaymentStatus = true,
-                    OrderedGood=new System.Collections.Generic.List<OrderedGood>(){
-                        new OrderedGood(){
-                            Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
-                            Amount = 2,
-                            CurrentPrice = 1500
-                        },
-                        new OrderedGood(){
-                            Goods = new Goods(5,"RX 580", 799, "simple radeon"),
-                            Amount = 3,
-                            CurrentPrice = 799
-                        },
-                },
-            },
-        };
-
-            cartedGoods.ItemsSource = new ObservableCollection<CartedGoodDto>
-            {
-                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
-                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
-                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
-            };
+            Fetch_Data();
 
             AddCategory.Visibility = Visibility.Collapsed;
             AddGood.Visibility = Visibility.Collapsed;
@@ -127,7 +58,7 @@ namespace Rozetochka
                 Cart.Visibility = Visibility.Visible;
                 OrderHistory.Visibility = Visibility.Visible;
 
-                if (username == "admin")
+                if (SessionData.IsAdmin == true)
                 {
                     OrderHistory.Visibility = Visibility.Collapsed;
                     Cart.Visibility = Visibility.Collapsed;
@@ -136,7 +67,7 @@ namespace Rozetochka
                     AddGood.Visibility = Visibility.Visible;
                     Categories.Visibility = Visibility.Visible;
                 }
-               
+                Fetch_Data();
                 return;
             }
 
@@ -202,7 +133,7 @@ namespace Rozetochka
         }
         private void goodsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -216,6 +147,33 @@ namespace Rozetochka
             catch (Exception)
             {
                 //object still loading
+            }
+        }
+
+        private async void ToCart_Button(object sender, RoutedEventArgs e)
+        {
+            var sndr = sender as System.Windows.Controls.Button;
+            var goodItem = sndr.DataContext as GoodDto;
+
+            await _orderService.AddGoodsToOrdered(goodItem.ID, 1, SessionData.ID);
+
+            Fetch_Data();
+        }
+
+        public void Fetch_Data(int? categoryId = null)
+        {
+            //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
+            //щоб отримати всі продукти передаємо null
+            goodsList.ItemsSource = _goodsService.GetGoods(categoryId, orderBy);
+
+            categoriesList.ItemsSource = _categoryService.GetCategories();
+
+            if (SessionData.ID > 0)
+            {
+
+                ordersList.ItemsSource = new ObservableCollection<CartDto> { _orderService.GetCart(SessionData.ID) };
+
+                cartedGoods.ItemsSource = _orderService.GetAllOrderedGoodsByBuyerId(SessionData.ID);
             }
         }
     }
