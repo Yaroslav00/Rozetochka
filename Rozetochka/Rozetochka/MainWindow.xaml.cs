@@ -23,14 +23,16 @@ namespace Rozetochka
         private readonly ICategoryService _categoryService = new CategoryService();
         private readonly IGoodsService _goodsService = new GoodsService();
         private string orderBy = "За алфавітом";
+
         public MainWindow()
         {
             InitializeComponent();
 
             //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
             //щоб отримати всі продукти передаємо null
-            goodsList.ItemsSource = _goodsService.GetGoods(null, orderBy); 
-
+            userGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
+            adminGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy); 
+            
             categoriesList.ItemsSource = _categoryService.GetCategories();
 
             ordersList.ItemsSource = new ObservableCollection<Order>
@@ -43,12 +45,12 @@ namespace Rozetochka
                         new OrderedGood(){
                             Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
                             Amount = 2,
-                            CurrentPrice = 1500
+                            CurrentPrice = 2*1500
                         },
                         new OrderedGood(){
                             Goods = new Goods(5,"RX 580", 799, "simple radeon"),
                             Amount = 3,
-                            CurrentPrice = 799
+                            CurrentPrice = 3*799
                         },
                 },
             },
@@ -90,16 +92,25 @@ namespace Rozetochka
 
             cartedGoods.ItemsSource = new ObservableCollection<CartedGoodDto>
             {
-                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
-                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
-                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled")},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon")},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard")},
+                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"), TotalSum = 2*1500},
+                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon"), TotalSum = 2*799},
+                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard"), TotalSum = 2*190},
+              new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"), TotalSum = 2*1500},
+                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon"), TotalSum = 2*799},
+                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard"), TotalSum = 2*190},
+              new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"), TotalSum = 2*1500},
+                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon"), TotalSum = 2*799},
+                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard"), TotalSum = 2*190},
             };
+
+            decimal totalOrderSum = 0.0M;
+
+            foreach(CartedGoodDto cartedGoodDTO in cartedGoods.ItemsSource)
+            {
+                totalOrderSum += cartedGoodDTO.TotalSum;
+            }
+
+            TotalOrderSum.Content = totalOrderSum;
 
             AddCategory.Visibility = Visibility.Collapsed;
             AddGood.Visibility = Visibility.Collapsed;
@@ -135,8 +146,11 @@ namespace Rozetochka
                     AddCategory.Visibility = Visibility.Visible;
                     AddGood.Visibility = Visibility.Visible;
                     Categories.Visibility = Visibility.Visible;
+                    
+                    adminGoodsList.Visibility = Visibility.Visible;
+                    userGoodsList.Visibility = Visibility.Collapsed;
                 }
-               
+                
                 return;
             }
 
@@ -152,6 +166,8 @@ namespace Rozetochka
             Cart.Visibility = Visibility.Collapsed;
             OrderHistory.Visibility = Visibility.Collapsed;
 
+            adminGoodsList.Visibility = Visibility.Collapsed;
+            userGoodsList.Visibility = Visibility.Visible;
 
             Username.Text = null;
             Greeting.Content = null;
@@ -189,7 +205,45 @@ namespace Rozetochka
                 SessionData.Password = null;
             }
         }
+        
+        private void GoodAddToCartButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        }
 
+        private void GoodDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        }
+        
+        private void ConfirmOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        } 
+        private void CartedGoodDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        }
+        private void PersonalInfoSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AreUserCredentialsValid(Password.Password, PasswordRepeat.Password))
+            {
+                MessageBox.Show("Особисті дані успішно зміненно",
+                    "Збережено",
+                    MessageBoxButton.OK);
+            }
+            else
+            {
+                MessageBox.Show("Паролі повинні збігатися",
+                    "Помилка редагування",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+        private static bool AreUserCredentialsValid(string password, string passwordRepeat)
+        {
+            return (password.Equals(passwordRepeat));
+        }
         private void AddGoodButton_Click(object sender, RoutedEventArgs e)
         {
             GoodWindow goodWindow = new GoodWindow();
@@ -200,17 +254,15 @@ namespace Rozetochka
             CategoryWindow categoryWindow = new CategoryWindow();
             categoryWindow.ShowDialog();
         }
-        private void goodsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem selectedItem = (ComboBoxItem)orderByBox.SelectedItem;
             try
             {
                 orderBy = selectedItem.Content.ToString().Replace("System.Windows.Controls.Label: ", "");
-                goodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
+                userGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
+                adminGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
                 //InitializeComponent();
             }
             catch (Exception)
@@ -223,6 +275,7 @@ namespace Rozetochka
     public class CartedGoodDto
     {
         public int Amount { get; set; }
-        public  Goods Goods { get; set; }
+        public Goods Goods { get; set; }
+        public decimal TotalSum {get;set;}
     }
 }
