@@ -16,5 +16,10 @@ namespace Business.Services
         {
             return await UsersRepository.Register(username, password);
         }
+
+        public async Task ChangeUserCredentials(int userId, string username, string password)
+        {
+            await UsersRepository.ChangeUserCredentials(userId, username, password);
+        }
     }
 }

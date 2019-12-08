@@ -161,6 +161,7 @@
                                         <TextBlock FontSize="20" Text="x" HorizontalAlignment="Center" Foreground="#006064" Margin="10,0,0,0"/>
                                         <TextBlock FontSize="20" Text="{Binding CurrentPrice}" HorizontalAlignment="Center" Foreground="#006064" Margin="10,0,0,0" Width="70"/>
                                         <Button Content="Вилучити"
+                                                Click="DeleteFromCartButton"
                                                     Height="30" 
                                                     Width="100px" 
                                                     Margin="50,0,0,0" 

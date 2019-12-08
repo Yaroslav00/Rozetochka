@@ -8,5 +8,7 @@ namespace Business.Interfaces
         Task<UserDto> Login(string username, string password);
 
         Task<UserDto> Register(string username, string password);
+
+        Task ChangeUserCredentials(int userId, string username, string password);
     }
 }

@@ -8,10 +8,10 @@ namespace Business.Interfaces
     {
         Task<OrderedGoodDto> AddGoodsToOrdered(int goodId, int amount, int buyerId);
 
-        Task<decimal> GetOrderTotalPrice(int orderId);
-
         CartDto GetCart(int orderId);
 
         List<OrderedGoodDto> GetAllOrderedGoodsByBuyerId(int buyerId);
+
+        Task DeleteGoodFromOrder(int goodId, int orderId);
     }
 }
