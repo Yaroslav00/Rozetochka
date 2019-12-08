@@ -159,6 +159,17 @@ namespace Rozetochka
             }
         }
 
+        private async void DeleteFromCartButton(object sender, RoutedEventArgs e)
+        
+        {
+            var btn = sender as Button;
+            var item = btn.DataContext as OrderedGoodDto;
+
+            await _orderService.DeleteGoodFromOrder(item.GoodsID, item.OrderID);
+            
+            Fetch_Data();
+        }
+
         private async void ToCart_Button(object sender, RoutedEventArgs e)
         {
             var sndr = sender as System.Windows.Controls.Button;

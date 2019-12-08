@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Threading.Tasks;
 using Business.Interfaces;
 using DataAccess;
@@ -28,6 +29,12 @@ namespace Business.Services
             await OrderRepository.UpdateOrderPrice(orderId);
 
             return orderedGood;
+        }
+
+        public async Task DeleteGoodFromOrder(int goodId, int orderId)
+        {
+            await OrderedGoodRepository.DeleteGoodFromOrder(orderId, goodId);
+            await OrderRepository.UpdateOrderPrice(orderId);
         }
 
         public CartDto GetCart(int buyerId)

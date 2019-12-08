@@ -73,5 +73,21 @@ namespace DataAccess.Repository
                     }).ToList();
             }
         }
+
+        public static async Task DeleteGoodFromOrder(int orderId, int goodId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var orderedGood = await
+                    dbContext.PurchaseGoods.Where(g => g.GoodsID.Equals(goodId) && g.OrderID.Equals(orderId))
+                        .FirstOrDefaultAsync();
+
+                if (orderedGood != null)
+                {
+                    dbContext.PurchaseGoods.Remove(orderedGood);
+                    await dbContext.SaveChangesAsync();
+                }
+            }
+        }
     }
 }

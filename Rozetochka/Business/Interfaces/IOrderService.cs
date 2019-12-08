@@ -11,5 +11,7 @@ namespace Business.Interfaces
         CartDto GetCart(int orderId);
 
         List<OrderedGoodDto> GetAllOrderedGoodsByBuyerId(int buyerId);
+
+        Task DeleteGoodFromOrder(int goodId, int orderId);
     }
 }
