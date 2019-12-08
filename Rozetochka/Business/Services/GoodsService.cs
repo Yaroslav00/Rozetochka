@@ -12,5 +12,10 @@ namespace Business.Services
         {
             return ItemRepository.GetItems(categoryId, orderBy);
         }
+
+        public async Task AddGood(int categoryId, string name, string description, decimal price)
+        {
+            await ItemRepository.AddItem(categoryId, name, description, price);
+        }
     }
 }

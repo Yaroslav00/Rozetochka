@@ -26,8 +26,15 @@ namespace Rozetochka
         private readonly IGoodsService _goodsService = new GoodsService();
         private readonly IOrderService _orderService = new OrderService();
         private string orderBy = "За алфавітом";
+        
+        public delegate void Fetch(int? category = null);
+
+        private Fetch fetch_delegate;
+
         public MainWindow()
         {
+            fetch_delegate = Fetch_Data;
+
             InitializeComponent();
 
             Fetch_Data();
@@ -123,7 +130,7 @@ namespace Rozetochka
 
         private void AddGoodButton_Click(object sender, RoutedEventArgs e)
         {
-            GoodWindow goodWindow = new GoodWindow();
+            GoodWindow goodWindow = new GoodWindow(fetch_delegate);
             goodWindow.ShowDialog();
         }
         private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
