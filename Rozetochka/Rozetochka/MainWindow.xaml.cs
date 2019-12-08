@@ -25,6 +25,8 @@ namespace Rozetochka
         private readonly ICategoryService _categoryService = new CategoryService();
         private readonly IGoodsService _goodsService = new GoodsService();
         private readonly IOrderService _orderService = new OrderService();
+        private readonly IUserService _userService = new UserService();
+
         private string orderBy = "За алфавітом";
         
         public delegate void Fetch(int? category = null);
@@ -181,6 +183,15 @@ namespace Rozetochka
                 ordersList.ItemsSource = new ObservableCollection<CartDto> { _orderService.GetCart(SessionData.ID) };
 
                 cartedGoods.ItemsSource = _orderService.GetAllOrderedGoodsByBuyerId(SessionData.ID);
+            }
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (Password.Password.Equals(PasswordRepeat.Password) && !string.IsNullOrEmpty(Username.Text)
+                && SessionData.ID > 0)
+            {
+                await _userService.ChangeUserCredentials(SessionData.ID, Username.Text, Password.Password);
             }
         }
     }

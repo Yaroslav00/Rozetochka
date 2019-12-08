@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,23 @@ namespace DataAccess.Repository
                     IsAdmin = registeredUser.IsAdmin,
                     UserName = registeredUser.UserName
                 };
+            }
+        }
+
+        public static async Task ChangeUserCredentials(int userId, string username, string password)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var user = await dbContext.ShopUsers.FirstOrDefaultAsync(u => u.ID.Equals(userId));
+
+                if (user != null)
+                {
+                    user.UserName = username;
+                    user.Password = password;
+
+                    dbContext.ShopUsers.AddOrUpdate(user);
+                    await dbContext.SaveChangesAsync();
+                }
             }
         }
     }
