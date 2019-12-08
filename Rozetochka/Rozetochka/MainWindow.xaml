@@ -203,7 +203,7 @@
                                         <Separator Width="10000" Margin="0,10,0,10"/>
                                         <Grid>
                                             <ListView  
-                                                ItemsSource="{Binding OrderedGood}"
+                                                ItemsSource="{Binding OrderedGoods}"
                                                 HorizontalContentAlignment="Stretch" 
                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                 Margin="10,5,10,5"
@@ -211,7 +211,7 @@
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                            <TextBlock FontSize="20" Text="{Binding Goods.Name}" HorizontalAlignment="Left" Foreground="#006064" Margin="50,10,0,0" Width="200"/>
+                                                            <TextBlock FontSize="20" Text="{Binding Name}" HorizontalAlignment="Left" Foreground="#006064" Margin="50,10,0,0" Width="200"/>
                                                             <TextBlock FontSize="20" Text="{Binding Amount}" HorizontalAlignment="Left" Foreground="#006064" Margin="670,10,0,0" Width="10"/>
                                                             <TextBlock FontSize="20" Text="x" HorizontalAlignment="Left" Foreground="#006064" Margin="5,10,0,0"/>
                                                             <TextBlock FontSize="20" Text="{Binding CurrentPrice}" HorizontalAlignment="Left" Foreground="#006064" Margin="5,10,0,0" Width="70"/>

@@ -91,13 +91,21 @@ namespace DataAccess.Repository
         {
             using (var dbContext = new ApplicationDbContext())
             {
-                var orderGoods = dbContext.PurchaseGoods.Where(p => p.OrderID == orderId).Select(p => new OrderedGoodDto
+                var orderGoods = dbContext.PurchaseGoods.Where(p => p.OrderID == orderId).Select(p => new {
+                    p.ID,
+                    p.Amount,
+                    p.CurrentPrice,
+                    p.OrderID,
+                    p.GoodsID,
+                }).Join(dbContext.Merchandise,arg => arg.GoodsID, goods => goods.ID,(p, a) => new OrderedGoodDto
                 {
                     ID = p.ID,
                     Amount = p.Amount,
                     CurrentPrice = p.CurrentPrice,
                     OrderID = p.OrderID,
-                    GoodsID = p.GoodsID
+                    GoodsID = p.GoodsID,
+                    Name = a.Name,
+                    Description = a.Description
                 }).ToList();
 
                 var order = GetOrderById(orderId)?? GetOrderById(CreateNewOrder());
