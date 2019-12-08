@@ -52,7 +52,7 @@
         <Label Content="Ціна" HorizontalAlignment="Left" Margin="63,171,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="Категорія" HorizontalAlignment="Left" Margin="63,222,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="Опис" HorizontalAlignment="Left" Margin="63,274,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <ComboBox Name="CategorySelect" HorizontalAlignment="Left" Margin="63,253,0,0" VerticalAlignment="Top" Width="180">
+        <ComboBox Name="CategorySelect" HorizontalAlignment="Left" Margin="63,253,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="CategorySelect_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

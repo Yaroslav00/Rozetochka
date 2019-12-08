@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+using System.Windows;
+using Business.Interfaces;
+using Business.Services;
+using DataAccess.Dto;
 
 namespace Rozetochka
 {
@@ -7,20 +12,17 @@ namespace Rozetochka
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private IUserService _userService;
+
         public LoginWindow()
         {
+            _userService = new UserService();
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (AreUserCredentialsValid(Username.Text, Password.Password))
-            {
-                SessionData.Username = Username.Text;
-                SessionData.Password = Password.Password;
-                this.Close();
-            }
-            else
+            if (!await AreUserCredentialsValid(Username.Text, Password.Password))
             {
                 MessageBox.Show("Невірний логін або пароль",
                     "Помилка авторизації",
@@ -36,10 +38,24 @@ namespace Rozetochka
             registerWindow.ShowDialog();
         }
 
-        private static bool AreUserCredentialsValid(string username, string password)
+        private async Task<bool> AreUserCredentialsValid(string username, string password)
         {
-            return (username.Equals("admin") && password.Equals("admin")) ||
-                   (username.Equals("user") && password.Equals("pass"));
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                var loginedUser = await _userService.Login(Username.Text, Password.Password);
+
+                if (loginedUser != UserDto.ErrorUser)
+                {
+                    SessionData.Password = Password.Password;
+                    SessionData.ID = loginedUser.ID;
+                    SessionData.IsAdmin = loginedUser.IsAdmin;
+                    SessionData.Username = Username.Text;
+                    this.Close();
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
     }
 }

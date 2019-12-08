@@ -26,5 +26,13 @@ namespace DataAccess
             this.Price = Price;
             this.Description = Description;
         }
+
+        public Goods(string Name, decimal Price, string Description, int CategoryId)
+        {
+            this.CategoryID = CategoryId;
+            this.Name = Name;
+            this.Price = Price;
+            this.Description = Description;
+        }
     }
 }

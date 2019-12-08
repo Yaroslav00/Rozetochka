@@ -18,6 +18,8 @@ namespace DataAccess.Models
 
         public DbSet<Order> Purchases { get; set; }
 
+        public DbSet<User> ShopUsers { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

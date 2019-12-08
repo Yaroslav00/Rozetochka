@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Threading.Tasks;
 using Business.Interfaces;
 using DataAccess;
@@ -9,38 +12,53 @@ namespace Business.Services
 {
     public class OrderService: IOrderService
     {
-        public async Task<decimal> GetOrderTotalPrice(int orderId)
+        public List<OrderedGoodDto> GetAllOrderedGoodsByBuyerId(int buyerId)
         {
-          return await OrderRepository.GetOrderTotalPrice(orderId);
+            var orderId = GetOrCreateOrderId(buyerId);
+
+            return OrderedGoodRepository.GetAllOrderedGoods(orderId);
         }
 
         public async Task<OrderedGoodDto> AddGoodsToOrdered(int goodId, int amount, int buyerId)
         {
-            int orderId;
-            decimal totalPrice = await ItemRepository.GetItemPrice(goodId) * amount;
-            int? orderIdUnresolved = await OrderedGoodRepository.FindOrderIdIfExists(buyerId);
+            int orderId = GetOrCreateOrderId(buyerId);
+            decimal totalPrice = await ItemRepository.GetItemPrice(goodId);
 
-            if (!orderIdUnresolved.HasValue)
+            var orderedGood = await OrderedGoodRepository.AddToOrderedGood(goodId, amount, buyerId, orderId, totalPrice);
+
+            await OrderRepository.UpdateOrderPrice(orderId);
+
+            return orderedGood;
+        }
+
+        public async Task DeleteGoodFromOrder(int goodId, int orderId)
+        {
+            await OrderedGoodRepository.DeleteGoodFromOrder(orderId, goodId);
+            await OrderRepository.UpdateOrderPrice(orderId);
+        }
+
+        public CartDto GetCart(int buyerId)
+        {
+            var orderId = GetOrCreateOrderId(buyerId);
+
+            return OrderRepository.GetCart(orderId);
+        }
+
+        private int GetOrCreateOrderId(int buyerId)
+        {
+            int orderId;
+            var orderIdUnresolved = OrderRepository.FindOrderIdIfExists(buyerId);
+
+            if (orderIdUnresolved.Value <= 0)
             {
-                orderId = await OrderRepository.CreateNewOrder();
+                orderId = OrderRepository.CreateNewOrder(buyerId);
             }
             else
             {
                 orderId = orderIdUnresolved.Value;
             }
 
-            var orderedGood = await OrderedGoodRepository.AddToOrderedGood(goodId, amount, buyerId, orderId, totalPrice);
-
-            var currentTotal = await GetOrderTotalPrice(orderId);
-
-            OrderRepository.UpdateOrderPrice(orderId,currentTotal);
-
-            return orderedGood;
-        }
-
-        public async Task<CartDto> GetCart(int orderId)
-        {
-            return await OrderRepository.GetCart(orderId);
+            return orderId;
         }
 
         public async void Checkout(int orderId)

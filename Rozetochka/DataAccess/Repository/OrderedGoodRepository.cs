@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,37 +16,77 @@ namespace DataAccess.Repository
         {
             using (var dbContext = new ApplicationDbContext())
             {
-                var orderedGood = new OrderedGood
-                {
-                    GoodsID = goodId,
-                    Amount = amount,
-                    BuyerID = buyerId,
-                    CurrentPrice = totalPrice,
-                    OrderID = orderId
-                };
+                var orderedGood = await dbContext.PurchaseGoods.Where(p => p.GoodsID.Equals(goodId) && p.OrderID.Equals(orderId)).FirstOrDefaultAsync();
 
-                dbContext.PurchaseGoods.Add(orderedGood);
-                await dbContext.SaveChangesAsync();
+                if (orderedGood == null)
+                {
+                    orderedGood = new OrderedGood
+                    {
+                        GoodsID = goodId,
+                        Amount = amount,
+                        CurrentPrice = totalPrice,
+                        OrderID = orderId
+                    };
+
+                    dbContext.PurchaseGoods.Add(orderedGood);
+                    await dbContext.SaveChangesAsync();
+
+                }
+                else
+                {
+                    orderedGood.Amount += amount;
+                    dbContext.PurchaseGoods.AddOrUpdate(orderedGood);
+                    await dbContext.SaveChangesAsync();
+
+                }
 
                 return new OrderedGoodDto
                 {
                     ID = orderedGood.ID,
                     Amount = orderedGood.Amount,
-                    BuyerID = orderedGood.BuyerID,
                     CurrentPrice = orderedGood.CurrentPrice,
                     GoodsID = orderedGood.GoodsID,
                     OrderID = orderedGood.OrderID
                 };
             }
         }
-
-        public static async Task<int?> FindOrderIdIfExists(int buyerId)
+        public static List<OrderedGoodDto> GetAllOrderedGoods(int orderId)
         {
             using (var dbContext = new ApplicationDbContext())
             {
-                var orderId = await dbContext.PurchaseGoods.Where(p => p.BuyerID == buyerId).Select(p => p.OrderID)
-                    .FirstAsync();
-                return orderId;
+                return dbContext.PurchaseGoods.Where(g => g.OrderID == orderId).Select(g => new {
+                    g.Amount,
+                    g.ID,
+                    g.OrderID,
+                    g.CurrentPrice,
+                    g.GoodsID,
+                }).Join(dbContext.Merchandise, c => c.GoodsID, goods => goods.ID, (r, t) => 
+                    new OrderedGoodDto
+                    {
+                        ID = r.ID,
+                        Amount = r.Amount,
+                        CurrentPrice = r.CurrentPrice,
+                        Description = t.Description,
+                        OrderID = r.OrderID,
+                        GoodsID = r.GoodsID,
+                        Name = t.Name
+                    }).ToList();
+            }
+        }
+
+        public static async Task DeleteGoodFromOrder(int orderId, int goodId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var orderedGood = await
+                    dbContext.PurchaseGoods.Where(g => g.GoodsID.Equals(goodId) && g.OrderID.Equals(orderId))
+                        .FirstOrDefaultAsync();
+
+                if (orderedGood != null)
+                {
+                    dbContext.PurchaseGoods.Remove(orderedGood);
+                    await dbContext.SaveChangesAsync();
+                }
             }
         }
     }

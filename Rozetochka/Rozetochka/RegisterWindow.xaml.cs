@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
+using Business.Interfaces;
+using Business.Services;
+using DataAccess.Dto;
 
 namespace Rozetochka
 {
@@ -7,31 +11,48 @@ namespace Rozetochka
     /// </summary>
     public partial class RegisterWindow : Window
     {
+        private readonly IUserService _userService;
         public RegisterWindow()
         {
+            _userService = new UserService();
             InitializeComponent();
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AreUserCredentialsValid(Password.Password, PasswordRepeat.Password))
+
+            if (await AreUserCredentialsValid(Password.Password, PasswordRepeat.Password, Username.Text))
             {
                 MessageBox.Show($"Ви успішно зареєструвалися. Вітаємо у нашій Розеточці, {Username.Text}!",
                     "Вітаємо!",
                     MessageBoxButton.OK);
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Паролі повинні збігатися",
+                MessageBox.Show("Помилка реєстрації",
                     "Помилка реєстрації",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
         
-        private static bool AreUserCredentialsValid(string password, string passwordRepeat)
+        private async Task<bool> AreUserCredentialsValid(string password, string passwordRepeat, string username)
         {
-            return (password.Equals(passwordRepeat));
+            if (password.Equals(passwordRepeat) && !string.IsNullOrEmpty(username))
+            {
+                var registeredUser = await _userService.Register(Username.Text, Password.Password);
+                if (registeredUser != UserDto.ErrorUser)
+                {
+                    SessionData.Password = Password.Password;
+                    SessionData.ID = registeredUser.ID;
+                    SessionData.IsAdmin = registeredUser.IsAdmin;
+                    SessionData.Username = registeredUser.UserName;
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
     }
 }

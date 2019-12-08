@@ -10,6 +10,8 @@ using DataAccess;
 using Business.Interfaces;
 using Business.Services;
 using System;
+using System.Runtime.CompilerServices;
+using DataAccess.Dto;
 
 namespace Rozetochka
 {
@@ -22,95 +24,31 @@ namespace Rozetochka
 
         private readonly ICategoryService _categoryService = new CategoryService();
         private readonly IGoodsService _goodsService = new GoodsService();
+        private readonly IOrderService _orderService = new OrderService();
+        private readonly IUserService _userService = new UserService();
+
         private string orderBy = "За алфавітом";
+
+        public delegate void Fetch(int? category = null);
+
+        private Fetch fetch_delegate;
 
         public MainWindow()
         {
+            fetch_delegate = Fetch_Data;
+
             InitializeComponent();
 
-            //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
-            //щоб отримати всі продукти передаємо null
-            userGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
-            adminGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy); 
-            
-            categoriesList.ItemsSource = _categoryService.GetCategories();
-
-            ordersList.ItemsSource = new ObservableCollection<Order>
-            {
-                new Order{ID = 1,
-                    Data = DateTime.Now,
-                    TotalPrice = 1000,
-                    PaymentStatus = true,
-                    OrderedGood=new System.Collections.Generic.List<OrderedGood>(){
-                        new OrderedGood(){
-                            Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
-                            Amount = 2,
-                            CurrentPrice = 2*1500
-                        },
-                        new OrderedGood(){
-                            Goods = new Goods(5,"RX 580", 799, "simple radeon"),
-                            Amount = 3,
-                            CurrentPrice = 3*799
-                        },
-                },
-            },
-                new Order{ID = 1,
-                    Data = DateTime.Now,
-                    TotalPrice = 1000,
-                    PaymentStatus = true,
-                    OrderedGood=new System.Collections.Generic.List<OrderedGood>(){
-                        new OrderedGood(){
-                            Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
-                            Amount = 2,
-                            CurrentPrice = 1500
-                        },
-                        new OrderedGood(){
-                            Goods = new Goods(5,"RX 580", 799, "simple radeon"),
-                            Amount = 3,
-                            CurrentPrice = 799
-                        },
-                },
-            },
-                new Order{ID = 1,
-                    Data = DateTime.Now,
-                    TotalPrice = 1000,
-                    PaymentStatus = true,
-                    OrderedGood=new System.Collections.Generic.List<OrderedGood>(){
-                        new OrderedGood(){
-                            Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"),
-                            Amount = 2,
-                            CurrentPrice = 1500
-                        },
-                        new OrderedGood(){
-                            Goods = new Goods(5,"RX 580", 799, "simple radeon"),
-                            Amount = 3,
-                            CurrentPrice = 799
-                        },
-                },
-            },
-        };
-
-            cartedGoods.ItemsSource = new ObservableCollection<CartedGoodDto>
-            {
-                new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"), TotalSum = 2*1500},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon"), TotalSum = 2*799},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard"), TotalSum = 2*190},
-              new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"), TotalSum = 2*1500},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon"), TotalSum = 2*799},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard"), TotalSum = 2*190},
-              new CartedGoodDto(){Amount = 2, Goods = new Goods(4,"Rtx 2080ti", 1500, "rtx enabled"), TotalSum = 2*1500},
-                new CartedGoodDto(){Amount = 1, Goods = new Goods(5,"RX 580", 799, "simple radeon"), TotalSum = 2*799},
-                new CartedGoodDto(){Amount = 3, Goods =  new Goods(6,"hyperx Alloy Fps", 190, "descent keyboard"), TotalSum = 2*190},
-            };
+            Fetch_Data();
 
             decimal totalOrderSum = 0.0M;
 
-            foreach(CartedGoodDto cartedGoodDTO in cartedGoods.ItemsSource)
-            {
-                totalOrderSum += cartedGoodDTO.TotalSum;
-            }
+            //foreach(CartedGoodDto cartedGoodDTO in cartedGoods.ItemsSource)
+            //{
+            //    totalOrderSum += cartedGoodDTO.TotalSum;
+            //}
 
-            TotalOrderSum.Content = totalOrderSum;
+            //TotalOrderSum.Content = totalOrderSum;
 
             AddCategory.Visibility = Visibility.Collapsed;
             AddGood.Visibility = Visibility.Collapsed;
@@ -138,7 +76,7 @@ namespace Rozetochka
                 Cart.Visibility = Visibility.Visible;
                 OrderHistory.Visibility = Visibility.Visible;
 
-                if (username == "admin")
+                if (SessionData.IsAdmin == true)
                 {
                     OrderHistory.Visibility = Visibility.Collapsed;
                     Cart.Visibility = Visibility.Collapsed;
@@ -150,7 +88,9 @@ namespace Rozetochka
                     adminGoodsList.Visibility = Visibility.Visible;
                     userGoodsList.Visibility = Visibility.Collapsed;
                 }
-                
+
+                Fetch_Data();
+
                 return;
             }
 
@@ -246,15 +186,18 @@ namespace Rozetochka
         }
         private void AddGoodButton_Click(object sender, RoutedEventArgs e)
         {
-            GoodWindow goodWindow = new GoodWindow();
+            GoodWindow goodWindow = new GoodWindow(fetch_delegate);
             goodWindow.ShowDialog();
         }
         private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            CategoryWindow categoryWindow = new CategoryWindow();
+            CategoryWindow categoryWindow = new CategoryWindow(fetch_delegate);
             categoryWindow.ShowDialog();
         }
-        
+        private void goodsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem selectedItem = (ComboBoxItem)orderByBox.SelectedItem;
@@ -268,6 +211,53 @@ namespace Rozetochka
             catch (Exception)
             {
                 //object still loading
+            }
+        }
+
+        private async void DeleteFromCartButton(object sender, RoutedEventArgs e)
+        
+        {
+            var btn = sender as Button;
+            var item = btn.DataContext as OrderedGoodDto;
+
+            await _orderService.DeleteGoodFromOrder(item.GoodsID, item.OrderID);
+            
+            Fetch_Data();
+        }
+
+        private async void ToCart_Button(object sender, RoutedEventArgs e)
+        {
+            var sndr = sender as System.Windows.Controls.Button;
+            var goodItem = sndr.DataContext as GoodDto;
+
+            await _orderService.AddGoodsToOrdered(goodItem.ID, 1, SessionData.ID);
+
+            Fetch_Data();
+        }
+
+        public void Fetch_Data(int? categoryId = null)
+        {
+            //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
+            //щоб отримати всі продукти передаємо null
+            adminGoodsList.ItemsSource = userGoodsList.ItemsSource = _goodsService.GetGoods(categoryId, orderBy);
+
+            categoriesList.ItemsSource = _categoryService.GetCategories();
+
+            if (SessionData.ID > 0)
+            {
+
+                ordersList.ItemsSource = new ObservableCollection<CartDto> { _orderService.GetCart(SessionData.ID) };
+
+                cartedGoods.ItemsSource = _orderService.GetAllOrderedGoodsByBuyerId(SessionData.ID);
+            }
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (Password.Password.Equals(PasswordRepeat.Password) && !string.IsNullOrEmpty(Username.Text)
+                && SessionData.ID > 0)
+            {
+                await _userService.ChangeUserCredentials(SessionData.ID, Username.Text, Password.Password);
             }
         }
     }

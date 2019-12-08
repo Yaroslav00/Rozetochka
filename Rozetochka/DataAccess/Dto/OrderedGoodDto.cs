@@ -16,7 +16,9 @@ namespace DataAccess.Dto
 
         public int OrderID { get; set; }
 
-        public int BuyerID { get; set; }
+        public string Name { get; set; }
+
+        public string Description { get; set; }
 
         public decimal CurrentPrice { get; set; }
     }

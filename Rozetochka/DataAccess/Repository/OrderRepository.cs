@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -12,15 +13,7 @@ namespace DataAccess.Repository
 {
     public static class OrderRepository
     {
-        public static async Task<decimal> GetOrderTotalPrice(int orderId)
-        {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                return await dbContext.PurchaseGoods.Where(p => p.OrderID == orderId).SumAsync(p => p.CurrentPrice);
-            }
-        }
-
-        public static async Task<int> CreateNewOrder()
+        public static int CreateNewOrder()
         {
             using (var dbContext = new ApplicationDbContext())
             {
@@ -30,27 +23,63 @@ namespace DataAccess.Repository
                     TotalPrice = 0,
                     PaymentStatus = false
                 };
-                
+
                 dbContext.Purchases.Add(order);
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 return order.ID;
             }
         }
 
-        public static async void UpdateOrderPrice(int orderId, decimal price)
+        public static int CreateNewOrder(int buyerId)
         {
             using (var dbContext = new ApplicationDbContext())
             {
-                var order = await dbContext.Purchases.Select(p => new Order
+                var order = new Order
+                {
+                    Data = DateTime.UtcNow,
+                    TotalPrice = 0,
+                    PaymentStatus = false,
+                    BuyerID = buyerId
+                };
+                
+                dbContext.Purchases.Add(order);
+                dbContext.SaveChanges();
+
+                return order.ID;
+            }
+        }
+
+        public static async Task UpdateOrderPrice(int orderId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var sumAllItemsInCart = await dbContext.PurchaseGoods.Where(p => p.OrderID.Equals(orderId)).ToListAsync();
+
+                decimal price = 0;
+
+                sumAllItemsInCart.ForEach(i =>
+                {
+                    price += i.Amount*i.CurrentPrice;
+                });
+
+                var orderDto = await dbContext.Purchases.Select(p => new OrderDto
                 {
                     PaymentStatus = p.PaymentStatus,
                     Data = p.Data,
                     TotalPrice = p.TotalPrice,
-                    ID = p.ID
+                    ID = p.ID,
+                    BuyerID = p.BuyerID
                 }).FirstOrDefaultAsync(p => p.ID == orderId);
 
-                order.TotalPrice = price;
+                var order = new Order
+                {
+                    ID = orderDto.ID,
+                    TotalPrice = price,
+                    PaymentStatus = orderDto.PaymentStatus,
+                    BuyerID = orderDto.BuyerID,
+                    Data = orderDto.Data,
+                };
 
                 dbContext.Purchases.AddOrUpdate(order);
 
@@ -58,29 +87,45 @@ namespace DataAccess.Repository
             }
         }
 
-        public static async Task<CartDto> GetCart(int orderId)
+        public static CartDto GetCart(int orderId)
         {
             using (var dbContext = new ApplicationDbContext())
             {
-                var orderGoods = await dbContext.PurchaseGoods.Where(p => p.OrderID == orderId).Select(p => new OrderedGoodDto
+                var orderGoods = dbContext.PurchaseGoods.Where(p => p.OrderID == orderId).Select(p => new {
+                    p.ID,
+                    p.Amount,
+                    p.CurrentPrice,
+                    p.OrderID,
+                    p.GoodsID,
+                }).Join(dbContext.Merchandise,arg => arg.GoodsID, goods => goods.ID,(p, a) => new OrderedGoodDto
                 {
                     ID = p.ID,
                     Amount = p.Amount,
-                    BuyerID = p.BuyerID,
                     CurrentPrice = p.CurrentPrice,
                     OrderID = p.OrderID,
-                    GoodsID = p.GoodsID
-                }).ToListAsync();
+                    GoodsID = p.GoodsID,
+                    Name = a.Name,
+                    Description = a.Description
+                }).ToList();
 
-                var order = await dbContext.Purchases.FirstOrDefaultAsync(p => p.ID == orderId);
+                var order = GetOrderById(orderId)?? GetOrderById(CreateNewOrder());
 
                 return new CartDto
                 {
+                    ID = order.ID,
                     Data = order.Data,
                     PaymentStatus = order.PaymentStatus,
                     TotalPrice = order.TotalPrice,
                     OrderedGoods = orderGoods
                 };
+            }
+        }
+
+        private static Order GetOrderById(int orderId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                return dbContext.Purchases.FirstOrDefault(p => p.ID.Equals(orderId));
             }
         }
 
@@ -95,6 +140,16 @@ namespace DataAccess.Repository
                 dbContext.Purchases.AddOrUpdate(order);
 
                 await dbContext.SaveChangesAsync();
+            }
+        }
+
+        public static int? FindOrderIdIfExists(int buyerId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var orderId = dbContext.Purchases.Where(p => p.BuyerID == buyerId).Select(p => p.ID)
+                    .FirstOrDefault();
+                return orderId;
             }
         }
     }
