@@ -1,8 +1,5 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace DataAccess.Models
 {
@@ -15,11 +12,13 @@ namespace DataAccess.Models
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Goods> Merchandise { get; set; } 
+        public DbSet<Goods> Merchandise { get; set; }
 
         public DbSet<OrderedGood> PurchaseGoods { get; set; }
 
         public DbSet<Order> Purchases { get; set; }
+
+        public DbSet<User> ShopUsers { get; set; }
 
         public static ApplicationDbContext Create()
         {

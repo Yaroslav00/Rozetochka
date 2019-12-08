@@ -58,5 +58,15 @@ namespace DataAccess.Repository
                     allItems.AsEnumerable().OrderBy(o => orderbyObj.GetValue(o, null)).ToList();
             }
         }
+
+        public static async Task AddItem(int categoryId, string name, string description, decimal price)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var item = new Goods(name, price, description, categoryId);
+                dbContext.Merchandise.Add(item);
+                await dbContext.SaveChangesAsync();
+            };
+        }
     }
 }

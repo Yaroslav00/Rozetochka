@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DataAccess.Dto;
 using DataAccess.Models;
 namespace DataAccess.Repository
@@ -17,6 +18,18 @@ namespace DataAccess.Repository
                     ID = cat.ID,
                     Name = cat.Name
                 }).ToList();
+            }
+        }
+
+        public static async Task AddCategory(string name)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var category = new Category(name);
+                
+
+                dbContext.Categories.Add(category);
+                await dbContext.SaveChangesAsync();
             }
         }
     }

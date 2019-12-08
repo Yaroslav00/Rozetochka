@@ -136,6 +136,7 @@
     <Compile Include="Dto\GoodDto.cs" />
     <Compile Include="Dto\OrderDto.cs" />
     <Compile Include="Dto\OrderedGoodDto.cs" />
+    <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Goods.cs" />
     <Compile Include="Migrations\201910011921461_DataMigration.cs" />
@@ -145,6 +146,22 @@
     <Compile Include="Migrations\201910141314340_init.cs" />
     <Compile Include="Migrations\201910141314340_init.designer.cs">
       <DependentUpon>201910141314340_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912071144083_User.cs" />
+    <Compile Include="Migrations\201912071144083_User.designer.cs">
+      <DependentUpon>201912071144083_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912080926142_UsrFRNKey.cs" />
+    <Compile Include="Migrations\201912080926142_UsrFRNKey.designer.cs">
+      <DependentUpon>201912080926142_UsrFRNKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912080934238_UsrFRN.cs" />
+    <Compile Include="Migrations\201912080934238_UsrFRN.designer.cs">
+      <DependentUpon>201912080934238_UsrFRN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912081122018_UsrFRN1.cs" />
+    <Compile Include="Migrations\201912081122018_UsrFRN1.designer.cs">
+      <DependentUpon>201912081122018_UsrFRN1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -156,6 +173,8 @@
     <Compile Include="Repository\ItemRepository.cs" />
     <Compile Include="Repository\OrderedGoodRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Repository\UsersRepository.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -172,6 +191,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910141314340_init.resx">
       <DependentUpon>201910141314340_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912071144083_User.resx">
+      <DependentUpon>201912071144083_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912080926142_UsrFRNKey.resx">
+      <DependentUpon>201912080926142_UsrFRNKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912080934238_UsrFRN.resx">
+      <DependentUpon>201912080934238_UsrFRN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912081122018_UsrFRN1.resx">
+      <DependentUpon>201912081122018_UsrFRN1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

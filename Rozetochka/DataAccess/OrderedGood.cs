@@ -1,11 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -21,8 +15,6 @@ namespace DataAccess
 
         [ForeignKey("Order")]
         public int OrderID { get; set; }
-
-        public int BuyerID { get; set; }
 
         public decimal CurrentPrice { get; set; }
 
