@@ -28,7 +28,7 @@ namespace Rozetochka
         private readonly IUserService _userService = new UserService();
 
         private string orderBy = "За алфавітом";
-        
+
         public delegate void Fetch(int? category = null);
 
         private Fetch fetch_delegate;
@@ -40,6 +40,15 @@ namespace Rozetochka
             InitializeComponent();
 
             Fetch_Data();
+
+            decimal totalOrderSum = 0.0M;
+
+            //foreach(CartedGoodDto cartedGoodDTO in cartedGoods.ItemsSource)
+            //{
+            //    totalOrderSum += cartedGoodDTO.TotalSum;
+            //}
+
+            //TotalOrderSum.Content = totalOrderSum;
 
             AddCategory.Visibility = Visibility.Collapsed;
             AddGood.Visibility = Visibility.Collapsed;
@@ -75,8 +84,13 @@ namespace Rozetochka
                     AddCategory.Visibility = Visibility.Visible;
                     AddGood.Visibility = Visibility.Visible;
                     Categories.Visibility = Visibility.Visible;
+                    
+                    adminGoodsList.Visibility = Visibility.Visible;
+                    userGoodsList.Visibility = Visibility.Collapsed;
                 }
+
                 Fetch_Data();
+
                 return;
             }
 
@@ -92,6 +106,8 @@ namespace Rozetochka
             Cart.Visibility = Visibility.Collapsed;
             OrderHistory.Visibility = Visibility.Collapsed;
 
+            adminGoodsList.Visibility = Visibility.Collapsed;
+            userGoodsList.Visibility = Visibility.Visible;
 
             Username.Text = null;
             Greeting.Content = null;
@@ -129,7 +145,45 @@ namespace Rozetochka
                 SessionData.Password = null;
             }
         }
+        
+        private void GoodAddToCartButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        }
 
+        private void GoodDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        }
+        
+        private void ConfirmOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        } 
+        private void CartedGoodDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        }
+        private void PersonalInfoSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AreUserCredentialsValid(Password.Password, PasswordRepeat.Password))
+            {
+                MessageBox.Show("Особисті дані успішно зміненно",
+                    "Збережено",
+                    MessageBoxButton.OK);
+            }
+            else
+            {
+                MessageBox.Show("Паролі повинні збігатися",
+                    "Помилка редагування",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+        private static bool AreUserCredentialsValid(string password, string passwordRepeat)
+        {
+            return (password.Equals(passwordRepeat));
+        }
         private void AddGoodButton_Click(object sender, RoutedEventArgs e)
         {
             GoodWindow goodWindow = new GoodWindow(fetch_delegate);
@@ -150,7 +204,8 @@ namespace Rozetochka
             try
             {
                 orderBy = selectedItem.Content.ToString().Replace("System.Windows.Controls.Label: ", "");
-                goodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
+                userGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
+                adminGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy);
                 //InitializeComponent();
             }
             catch (Exception)
@@ -184,7 +239,7 @@ namespace Rozetochka
         {
             //для фільтрування за категорією в параметри передаєм id категорії, в майбутньому за потреби зроблю колекцію айдішок
             //щоб отримати всі продукти передаємо null
-            goodsList.ItemsSource = _goodsService.GetGoods(categoryId, orderBy);
+            adminGoodsList.ItemsSource = userGoodsList.ItemsSource = _goodsService.GetGoods(categoryId, orderBy);
 
             categoriesList.ItemsSource = _categoryService.GetCategories();
 
@@ -210,6 +265,7 @@ namespace Rozetochka
     public class CartedGoodDto
     {
         public int Amount { get; set; }
-        public  Goods Goods { get; set; }
+        public Goods Goods { get; set; }
+        public decimal TotalSum {get;set;}
     }
 }

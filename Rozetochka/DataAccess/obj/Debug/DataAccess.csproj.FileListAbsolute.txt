@@ -450,54 +450,54 @@ F:\Rozetochka\Rozetochka\DataAccess\obj\Debug\DataAccess.csproj.GenerateResource
 F:\Rozetochka\Rozetochka\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 F:\Rozetochka\Rozetochka\DataAccess\obj\Debug\DataAccess.dll
 F:\Rozetochka\Rozetochka\DataAccess\obj\Debug\DataAccess.pdb
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\DataAccess.dll.config
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\DataAccess.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\DataAccess.pdb
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\EntityFramework.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.Cookies.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.OAuth.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Web.Infrastructure.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Newtonsoft.Json.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Owin.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.Helpers.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.Mvc.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.Razor.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.Deployment.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.Razor.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Unity.Abstractions.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Unity.Container.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Unity.Mvc5.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\EntityFramework.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.Cookies.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.OAuth.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Newtonsoft.Json.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.Helpers.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.Mvc.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.Razor.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.Razor.xml
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Unity.Abstractions.pdb
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\bin\Debug\Unity.Container.pdb
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\obj\Debug\DataAccess.dll
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\obj\Debug\DataAccess.pdb
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\obj\Debug\DataAccess.Migrations.DataMigration.resources
-D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\DataAccess\obj\Debug\DataAccess.csproj.GenerateResource.cache
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\DataAccess.dll.config
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.Cookies.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Newtonsoft.Json.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Owin.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.Helpers.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.Mvc.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.Razor.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Unity.Abstractions.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Unity.Container.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Unity.Mvc5.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.Cookies.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Newtonsoft.Json.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.Helpers.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.Mvc.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.Razor.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Unity.Abstractions.pdb
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\bin\Debug\Unity.Container.pdb
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\obj\Debug\DataAccess.Migrations.DataMigration.resources
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\obj\Debug\DataAccess.Migrations.init.resources
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\obj\Debug\DataAccess.csproj.GenerateResource.cache
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\DataAccess\obj\Debug\DataAccess.pdb
