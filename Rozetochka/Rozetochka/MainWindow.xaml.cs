@@ -135,7 +135,7 @@ namespace Rozetochka
         }
         private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            CategoryWindow categoryWindow = new CategoryWindow();
+            CategoryWindow categoryWindow = new CategoryWindow(fetch_delegate);
             categoryWindow.ShowDialog();
         }
         private void goodsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
