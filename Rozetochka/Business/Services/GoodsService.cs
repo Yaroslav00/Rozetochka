@@ -17,5 +17,10 @@ namespace Business.Services
         {
             await ItemRepository.AddItem(categoryId, name, description, price);
         }
+
+        public async Task DeleteGood(int goodId)
+        {
+            await ItemRepository.DeleteGood(goodId);
+        }
     }
 }

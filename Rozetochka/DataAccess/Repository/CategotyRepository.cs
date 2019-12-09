@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Dto;
@@ -32,5 +34,30 @@ namespace DataAccess.Repository
                 await dbContext.SaveChangesAsync();
             }
         }
+
+        public static async Task<bool> DeleteCategory(int categoryId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                try
+                {
+                    int itemsCount = await dbContext.Merchandise.CountAsync(i => i.CategoryID.Equals(categoryId));
+
+                    if (itemsCount > 0)
+                        return false;
+
+                    var toBeDeleted = new Category {ID = categoryId};
+
+                    dbContext.Categories.Attach(toBeDeleted);
+                    dbContext.Categories.Remove(toBeDeleted);
+
+                    await dbContext.SaveChangesAsync();
+                    return true;
+                } catch (Exception) {
+                    return false;
+                }
+            }
+        }
+
     }
 }

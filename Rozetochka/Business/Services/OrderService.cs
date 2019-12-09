@@ -14,14 +14,14 @@ namespace Business.Services
     {
         public List<OrderedGoodDto> GetAllOrderedGoodsByBuyerId(int buyerId)
         {
-            var orderId = GetOrCreateOrderId(buyerId);
+            var orderId = GetOrCreateOrderId(buyerId, false);
 
             return OrderedGoodRepository.GetAllOrderedGoods(orderId);
         }
 
         public async Task<OrderedGoodDto> AddGoodsToOrdered(int goodId, int amount, int buyerId)
         {
-            int orderId = GetOrCreateOrderId(buyerId);
+            int orderId = GetOrCreateOrderId(buyerId, false);
             decimal totalPrice = await ItemRepository.GetItemPrice(goodId);
 
             var orderedGood = await OrderedGoodRepository.AddToOrderedGood(goodId, amount, buyerId, orderId, totalPrice);
@@ -37,17 +37,22 @@ namespace Business.Services
             await OrderRepository.UpdateOrderPrice(orderId);
         }
 
-        public CartDto GetCart(int buyerId)
+        public List<CartDto> GetCart(int buyerId)
         {
-            var orderId = GetOrCreateOrderId(buyerId);
+            var orderId = GetOrCreateOrderIds(buyerId);
 
-            return OrderRepository.GetCart(orderId);
+            return OrderRepository.GetCartsHistory(orderId);
         }
 
-        private int GetOrCreateOrderId(int buyerId)
+        private List<int> GetOrCreateOrderIds(int buyerId)
+        {
+            return OrderRepository.FindAllOrderIds(buyerId);
+        }
+
+        private int GetOrCreateOrderId(int buyerId, bool takeCheckouted)
         {
             int orderId;
-            var orderIdUnresolved = OrderRepository.FindOrderIdIfExists(buyerId);
+            var orderIdUnresolved = OrderRepository.FindOrderIdIfExists(buyerId, takeCheckouted);
 
             if (orderIdUnresolved.Value <= 0)
             {
@@ -61,9 +66,20 @@ namespace Business.Services
             return orderId;
         }
 
-        public async void Checkout(int orderId)
+        public decimal SumCart(List<OrderedGoodDto> goods)
         {
-            await OrderRepository.Checkout(orderId);
+            decimal sum = 0;
+            goods.ForEach(i => { sum += i.Amount * i.CurrentPrice; });
+
+            return sum;
+        }
+
+        public async Task Checkout(int userId)
+        {
+            int? orderId = OrderRepository.FindOrderIdIfExists(userId, false);
+
+            if(orderId.HasValue)
+                await OrderRepository.Checkout(orderId.Value);
         }
     }
 }

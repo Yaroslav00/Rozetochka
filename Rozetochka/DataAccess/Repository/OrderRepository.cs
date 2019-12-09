@@ -87,6 +87,53 @@ namespace DataAccess.Repository
             }
         }
 
+        public static List<CartDto> GetCartsHistory(List<int> orderIds)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var orderGoods = dbContext.PurchaseGoods.Where(p => orderIds.Contains(p.OrderID)).Select(p => new {
+                    p.ID,
+                    p.Amount,
+                    p.CurrentPrice,
+                    p.OrderID,
+                    p.GoodsID,
+                }).Join(dbContext.Merchandise, arg => arg.GoodsID, goods => goods.ID, (p, a) => new OrderedGoodDto
+                {
+                    ID = p.ID,
+                    Amount = p.Amount,
+                    CurrentPrice = p.CurrentPrice,
+                    OrderID = p.OrderID,
+                    GoodsID = p.GoodsID,
+                    Name = a.Name,
+                    Description = a.Description
+                }).ToList();
+
+                var orders = GetOrders(orderIds);
+
+                List<CartDto> ordersHistory = new List<CartDto>();
+
+                orders.ForEach(o => ordersHistory.Add(new CartDto
+                {
+                    ID = o.ID,
+                    PaymentStatus = o.PaymentStatus,
+                    TotalPrice = o.TotalPrice,
+                    Data = o.Data,
+                    OrderedGoods = orderGoods.Where(g => o.ID.Equals(g.OrderID)).ToList()
+                }));
+
+                return ordersHistory;
+            }
+        }
+
+        private static List<Order> GetOrders(List<int> orderIds)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                return dbContext.Purchases.Where(p => orderIds.Contains(p.ID) && p.PaymentStatus).ToList();
+
+            }
+        }
+
         public static CartDto GetCart(int orderId)
         {
             using (var dbContext = new ApplicationDbContext())
@@ -110,7 +157,7 @@ namespace DataAccess.Repository
 
                 var order = GetOrderById(orderId)?? GetOrderById(CreateNewOrder());
 
-                return new CartDto
+                return !order.PaymentStatus ? new CartDto() : new CartDto
                 {
                     ID = order.ID,
                     Data = order.Data,
@@ -143,13 +190,21 @@ namespace DataAccess.Repository
             }
         }
 
-        public static int? FindOrderIdIfExists(int buyerId)
+        public static int? FindOrderIdIfExists(int buyerId, bool takeCheckouted)
         {
             using (var dbContext = new ApplicationDbContext())
             {
-                var orderId = dbContext.Purchases.Where(p => p.BuyerID == buyerId).Select(p => p.ID)
+                var orderId = dbContext.Purchases.Where(p => p.BuyerID == buyerId && p.PaymentStatus.Equals(takeCheckouted)).Select(p => p.ID)
                     .FirstOrDefault();
                 return orderId;
+            }
+        }
+
+        public static List<int> FindAllOrderIds(int buyerId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                return dbContext.Purchases.Where(p => p.BuyerID.Equals(buyerId)).Select(p => p.ID).ToList();
             }
         }
     }

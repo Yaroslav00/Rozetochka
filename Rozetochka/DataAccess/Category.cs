@@ -9,5 +9,7 @@
         {
             this.Name = Name;
         }
+
+        public Category() { }
     }
 }

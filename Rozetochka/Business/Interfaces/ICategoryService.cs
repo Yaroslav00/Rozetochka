@@ -13,5 +13,7 @@ namespace Business.Interfaces
         List<CategoryDto> GetCategories();
 
         Task AddCategory(string name);
+
+        Task<bool> DeleteCategory(int categoryId);
     }
 }

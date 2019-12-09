@@ -10,6 +10,7 @@ using DataAccess;
 using Business.Interfaces;
 using Business.Services;
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using DataAccess.Dto;
 
@@ -84,7 +85,7 @@ namespace Rozetochka
                     AddCategory.Visibility = Visibility.Visible;
                     AddGood.Visibility = Visibility.Visible;
                     Categories.Visibility = Visibility.Visible;
-                    
+
                     adminGoodsList.Visibility = Visibility.Visible;
                     userGoodsList.Visibility = Visibility.Collapsed;
                 }
@@ -115,6 +116,7 @@ namespace Rozetochka
             LoginLabel.Content = "Увійти";
             LoginLabel.Foreground = new SolidColorBrush(Color.FromRgb(76, 175, 80));
         }
+
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -122,13 +124,13 @@ namespace Rozetochka
 
         private void LoginLabel_MouseEnter(object sender, MouseEventArgs e)
         {
-            Label loginLabel = (Label)sender;
+            Label loginLabel = (Label) sender;
             loginLabel.FontWeight = FontWeights.SemiBold;
         }
 
         private void LoginLabel_MouseLeave(object sender, MouseEventArgs e)
         {
-            Label loginLabel = (Label)sender;
+            Label loginLabel = (Label) sender;
             loginLabel.FontWeight = FontWeights.Normal;
         }
 
@@ -145,22 +147,32 @@ namespace Rozetochka
                 SessionData.Password = null;
             }
         }
-        
+
         private void GoodAddToCartButton_Click(object sender, RoutedEventArgs e)
         {
-        
+
         }
 
-        private void GoodDeleteButton_Click(object sender, RoutedEventArgs e)
+        private async void GoodDeleteButton_Click(object sender, RoutedEventArgs e)
         {
-        
+            var btn = sender as Button;
+            var good = btn.DataContext as GoodDto;
+
+            await _goodsService.DeleteGood(good.ID);
+
+            Fetch_Data();
         }
-        
-        private void ConfirmOrderButton_Click(object sender, RoutedEventArgs e)
+
+        private async void ConfirmOrderButton_Click(object sender, RoutedEventArgs e)
         {
-        
-        } 
-        private void CartedGoodDeleteButton_Click(object sender, RoutedEventArgs e)
+            if (SessionData.ID > 0)
+            {
+                await _orderService.Checkout(SessionData.ID);
+                Fetch_Data();
+            }
+        }
+
+    private void CartedGoodDeleteButton_Click(object sender, RoutedEventArgs e)
         {
         
         }
@@ -214,6 +226,21 @@ namespace Rozetochka
             }
         }
 
+        private async void Delete_category(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var category = btn.DataContext as CategoryDto;
+
+            if (await _categoryService.DeleteCategory(category.ID))
+            {
+                Fetch_Data();
+            }
+            else
+            {
+                //handle category cant be deleted
+            }
+        }
+
         private async void DeleteFromCartButton(object sender, RoutedEventArgs e)
         
         {
@@ -246,11 +273,15 @@ namespace Rozetochka
             if (SessionData.ID > 0)
             {
 
-                ordersList.ItemsSource = new ObservableCollection<CartDto> { _orderService.GetCart(SessionData.ID) };
+                ordersList.ItemsSource = _orderService.GetCart(SessionData.ID);
 
                 cartedGoods.ItemsSource = _orderService.GetAllOrderedGoodsByBuyerId(SessionData.ID);
+
+                TotalOrderSum.Content = _orderService.SumCart(cartedGoods.ItemsSource as List<OrderedGoodDto>);
             }
         }
+
+        
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {

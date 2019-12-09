@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Dto;
 using DataAccess.Models;
+using Unity.Injection;
 
 namespace DataAccess.Repository
 {
@@ -67,6 +68,19 @@ namespace DataAccess.Repository
                 dbContext.Merchandise.Add(item);
                 await dbContext.SaveChangesAsync();
             };
+        }
+
+        public static async Task DeleteGood(int goodId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var good = new Goods {ID = goodId};
+
+                dbContext.Merchandise.Attach(good);
+                dbContext.Merchandise.Remove(good);
+
+                await dbContext.SaveChangesAsync();
+            }
         }
     }
 }
