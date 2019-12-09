@@ -151,9 +151,14 @@ namespace Rozetochka
         
         }
 
-        private void GoodDeleteButton_Click(object sender, RoutedEventArgs e)
+        private async void GoodDeleteButton_Click(object sender, RoutedEventArgs e)
         {
-        
+            var btn = sender as Button;
+            var good = btn.DataContext as GoodDto;
+
+            await _goodsService.DeleteGood(good.ID);
+
+            Fetch_Data();
         }
         
         private void ConfirmOrderButton_Click(object sender, RoutedEventArgs e)
@@ -251,6 +256,8 @@ namespace Rozetochka
                 cartedGoods.ItemsSource = _orderService.GetAllOrderedGoodsByBuyerId(SessionData.ID);
             }
         }
+
+        
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
