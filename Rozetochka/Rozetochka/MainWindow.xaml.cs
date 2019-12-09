@@ -219,6 +219,21 @@ namespace Rozetochka
             }
         }
 
+        private async void Delete_category(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var category = btn.DataContext as CategoryDto;
+
+            if (await _categoryService.DeleteCategory(category.ID))
+            {
+                Fetch_Data();
+            }
+            else
+            {
+                //handle category cant be deleted
+            }
+        }
+
         private async void DeleteFromCartButton(object sender, RoutedEventArgs e)
         
         {

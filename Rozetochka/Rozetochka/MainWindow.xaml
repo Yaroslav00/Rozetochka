@@ -165,7 +165,8 @@
                                                     Width="100px" 
                                                     Margin="410,10,288.4,-8.8" 
                                                     Background="Red"
-                                                    Foreground="White"/>
+                                                    Foreground="White"
+                                                    Click="Delete_category"/>
                                         </Grid>
                                     </StackPanel>
                                 </Border>
