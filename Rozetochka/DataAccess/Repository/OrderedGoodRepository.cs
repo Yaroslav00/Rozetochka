@@ -54,7 +54,9 @@ namespace DataAccess.Repository
         {
             using (var dbContext = new ApplicationDbContext())
             {
-                return dbContext.PurchaseGoods.Where(g => g.OrderID == orderId).Select(g => new {
+                return OrderRepository.GetCart(orderId).PaymentStatus 
+                    ? new List<OrderedGoodDto>()
+                    : dbContext.PurchaseGoods.Where(g => g.OrderID == orderId).Select(g => new {
                     g.Amount,
                     g.ID,
                     g.OrderID,
