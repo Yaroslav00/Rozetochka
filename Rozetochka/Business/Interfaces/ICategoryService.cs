@@ -11,5 +11,9 @@ namespace Business.Interfaces
     public interface ICategoryService
     {
         List<CategoryDto> GetCategories();
+
+        Task AddCategory(string name);
+
+        Task<bool> DeleteCategory(int categoryId);
     }
 }

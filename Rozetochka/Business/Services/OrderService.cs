@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Threading.Tasks;
 using Business.Interfaces;
 using DataAccess;
@@ -9,43 +12,74 @@ namespace Business.Services
 {
     public class OrderService: IOrderService
     {
-        public async Task<decimal> GetOrderTotalPrice(int orderId)
+        public List<OrderedGoodDto> GetAllOrderedGoodsByBuyerId(int buyerId)
         {
-          return await OrderRepository.GetOrderTotalPrice(orderId);
+            var orderId = GetOrCreateOrderId(buyerId, false);
+
+            return OrderedGoodRepository.GetAllOrderedGoods(orderId);
         }
 
         public async Task<OrderedGoodDto> AddGoodsToOrdered(int goodId, int amount, int buyerId)
         {
-            int orderId;
-            decimal totalPrice = await ItemRepository.GetItemPrice(goodId) * amount;
-            int? orderIdUnresolved = await OrderedGoodRepository.FindOrderIdIfExists(buyerId);
+            int orderId = GetOrCreateOrderId(buyerId, false);
+            decimal totalPrice = await ItemRepository.GetItemPrice(goodId);
 
-            if (!orderIdUnresolved.HasValue)
+            var orderedGood = await OrderedGoodRepository.AddToOrderedGood(goodId, amount, buyerId, orderId, totalPrice);
+
+            await OrderRepository.UpdateOrderPrice(orderId);
+
+            return orderedGood;
+        }
+
+        public async Task DeleteGoodFromOrder(int goodId, int orderId)
+        {
+            await OrderedGoodRepository.DeleteGoodFromOrder(orderId, goodId);
+            await OrderRepository.UpdateOrderPrice(orderId);
+        }
+
+        public List<CartDto> GetCart(int buyerId)
+        {
+            var orderId = GetOrCreateOrderIds(buyerId);
+
+            return OrderRepository.GetCartsHistory(orderId);
+        }
+
+        private List<int> GetOrCreateOrderIds(int buyerId)
+        {
+            return OrderRepository.FindAllOrderIds(buyerId);
+        }
+
+        private int GetOrCreateOrderId(int buyerId, bool takeCheckouted)
+        {
+            int orderId;
+            var orderIdUnresolved = OrderRepository.FindOrderIdIfExists(buyerId, takeCheckouted);
+
+            if (orderIdUnresolved.Value <= 0)
             {
-                orderId = await OrderRepository.CreateNewOrder();
+                orderId = OrderRepository.CreateNewOrder(buyerId);
             }
             else
             {
                 orderId = orderIdUnresolved.Value;
             }
 
-            var orderedGood = await OrderedGoodRepository.AddToOrderedGood(goodId, amount, buyerId, orderId, totalPrice);
-
-            var currentTotal = await GetOrderTotalPrice(orderId);
-
-            OrderRepository.UpdateOrderPrice(orderId,currentTotal);
-
-            return orderedGood;
+            return orderId;
         }
 
-        public async Task<CartDto> GetCart(int orderId)
+        public decimal SumCart(List<OrderedGoodDto> goods)
         {
-            return await OrderRepository.GetCart(orderId);
+            decimal sum = 0;
+            goods.ForEach(i => { sum += i.Amount * i.CurrentPrice; });
+
+            return sum;
         }
 
-        public async void Checkout(int orderId)
+        public async Task Checkout(int userId)
         {
-            await OrderRepository.Checkout(orderId);
+            int? orderId = OrderRepository.FindOrderIdIfExists(userId, false);
+
+            if(orderId.HasValue)
+                await OrderRepository.Checkout(orderId.Value);
         }
     }
 }

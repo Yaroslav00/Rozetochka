@@ -1,12 +1,6 @@
-﻿using DataAccess.Models;
-using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -16,5 +10,9 @@ namespace DataAccess
         public DateTime Data { get; set; }
         public decimal TotalPrice { get; set; }
         public bool PaymentStatus { get; set; }
+        [ForeignKey("User")]
+        public int BuyerID { get; set; }
+        public List<OrderedGood> OrderedGood { get; set; }
+        public virtual User User { get; set; }
     }
 }

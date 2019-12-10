@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Rozetochka\Rozetochka\Rozetochka\obj\Debug\
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Rozetochka\obj\Debug\
 Rozetochka
 none
 false
 DEBUG;TRACE
-D:\Rozetochka\Rozetochka\Rozetochka\App.xaml
-11151548125
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Rozetochka\App.xaml
+5-715534435
 
-5-2017746502
-711822030789
-MainWindow.xaml;
+101539610722
+761584427102
+CategoryWindow.xaml;GoodWindow.xaml;LoginWindow.xaml;MainWindow.xaml;RegisterWindow.xaml;
 
 False
 

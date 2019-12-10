@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\SirStrash\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Rozetochka.1666524191.00" t="ExcludeRecursive" />
+    <e p="C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka" t="IncludeFlat">
+      <e p="Business" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Business.csproj" t="IncludeRecursive" />
+        <e p="Interfaces" t="Include">
+          <e p="ICategoryService.cs" t="Include" />
+          <e p="IGoodsService.cs" t="Include" />
+          <e p="IOrderService.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="CategoryService.cs" t="Include" />
+          <e p="GoodsService.cs" t="Include" />
+          <e p="OrderService.cs" t="Include" />
+        </e>
+      </e>
+      <e p="DataAccess" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="App_Start" t="Include">
+          <e p="UnityConfig.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Category.cs" t="Include" />
+        <e p="DataAccess.csproj" t="IncludeRecursive" />
+        <e p="Dto" t="Include">
+          <e p="CartDto.cs" t="Include" />
+          <e p="CategoryDto.cs" t="Include" />
+          <e p="GoodDto.cs" t="Include" />
+          <e p="OrderDto.cs" t="Include" />
+          <e p="OrderedGoodDto.cs" t="Include" />
+        </e>
+        <e p="Entities" t="Include">
+          <e p="BaseEntity.cs" t="Include" />
+        </e>
+        <e p="Goods.cs" t="Include" />
+        <e p="Migrations" t="Include">
+          <e p="201910011921461_DataMigration.cs" t="Include" />
+          <e p="201910011921461_DataMigration.Designer.cs" t="Include" />
+          <e p="201910011921461_DataMigration.resx" t="Include" />
+          <e p="201910141314340_init.cs" t="Include" />
+          <e p="201910141314340_init.designer.cs" t="Include" />
+          <e p="201910141314340_init.resx" t="Include" />
+          <e p="Configuration.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="ApplicationDbContext.cs" t="Include" />
+          <e p="ApplicationUser.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Order.cs" t="Include" />
+        <e p="OrderedGood.cs" t="Include" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Repository" t="Include">
+          <e p="CategotyRepository.cs" t="Include" />
+          <e p="ItemRepository.cs" t="Include" />
+          <e p="OrderedGoodRepository.cs" t="Include" />
+          <e p="OrderRepository.cs" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="typings" t="Include">
+            <e p="jquery" t="Include">
+              <e p="jquery.d.ts" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Rozetochka" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CategoryWindow.xaml" t="Include" />
+        <e p="CategoryWindow.xaml.cs" t="Include" />
+        <e p="GoodWindow.xaml" t="Include" />
+        <e p="GoodWindow.xaml.cs" t="Include" />
+        <e p="LoginWindow.xaml" t="Include" />
+        <e p="LoginWindow.xaml.cs" t="Include" />
+        <e p="MainWindow.xaml" t="Include" />
+        <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="outlet.png" t="Include" />
+        <e p="Placeholder.png" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="RegisterWindow.xaml" t="Include" />
+        <e p="RegisterWindow.xaml.cs" t="Include" />
+        <e p="Rozetochka.csproj" t="IncludeRecursive" />
+        <e p="SessionData.cs" t="Include" />
+      </e>
+      <e p="Rozetochka.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

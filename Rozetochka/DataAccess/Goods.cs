@@ -1,11 +1,5 @@
-﻿using DataAccess.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -23,8 +17,8 @@ namespace DataAccess
         [ForeignKey("Category")]
         public int CategoryID { get; set; }
 
-        public virtual Category Category { get; set; }  
-        
+        public virtual Category Category { get; set; }
+
         public Goods(int ID, string Name, decimal Price, string Description)
         {
             this.ID = ID;
@@ -32,5 +26,15 @@ namespace DataAccess
             this.Price = Price;
             this.Description = Description;
         }
+
+        public Goods(string Name, decimal Price, string Description, int CategoryId)
+        {
+            this.CategoryID = CategoryId;
+            this.Name = Name;
+            this.Price = Price;
+            this.Description = Description;
+        }
+
+        public Goods() { }
     }
 }

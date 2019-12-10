@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccess
+﻿namespace DataAccess
 {
     public class Category
     {
@@ -15,5 +9,7 @@ namespace DataAccess
         {
             this.Name = Name;
         }
+
+        public Category() { }
     }
 }

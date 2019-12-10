@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Dto;
 using DataAccess.Models;
+using Unity.Injection;
 
 namespace DataAccess.Repository
 {
@@ -56,6 +57,29 @@ namespace DataAccess.Repository
                 return categoryId != null ? allItems.Where(item => item.CategoryID == categoryId).AsEnumerable()
                     .OrderBy(o => orderbyObj.GetValue(o,null)).ToList() :
                     allItems.AsEnumerable().OrderBy(o => orderbyObj.GetValue(o, null)).ToList();
+            }
+        }
+
+        public static async Task AddItem(int categoryId, string name, string description, decimal price)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var item = new Goods(name, price, description, categoryId);
+                dbContext.Merchandise.Add(item);
+                await dbContext.SaveChangesAsync();
+            };
+        }
+
+        public static async Task DeleteGood(int goodId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var good = new Goods {ID = goodId};
+
+                dbContext.Merchandise.Attach(good);
+                dbContext.Merchandise.Remove(good);
+
+                await dbContext.SaveChangesAsync();
             }
         }
     }

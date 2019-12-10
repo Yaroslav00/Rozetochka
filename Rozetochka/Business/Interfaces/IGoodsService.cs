@@ -8,5 +8,9 @@ namespace Business.Interfaces
     public interface IGoodsService
     {
         List<GoodDto> GetGoods(int? categoryId, string orderBy);
+
+        Task AddGood(int categoryId, string name, string description, decimal price);
+
+        Task DeleteGood(int goodId);
     }
 }
