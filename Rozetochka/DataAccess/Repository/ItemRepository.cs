@@ -83,5 +83,23 @@ namespace DataAccess.Repository
                 await dbContext.SaveChangesAsync();
             }
         }
+
+        public static async Task UpdateGood(int goodId, int categoryId, string name, string description, decimal price, string imageref)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                
+
+                Goods good = dbContext.Merchandise.First(p => p.ID == goodId);
+                good.ID = goodId;
+                good.Name = name;
+                good.Price = price;
+                good.ImageRef = imageref;
+                good.Description = description;
+                good.CategoryID = categoryId;
+
+                await dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

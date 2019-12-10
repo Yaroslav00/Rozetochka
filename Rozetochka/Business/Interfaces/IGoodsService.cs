@@ -12,5 +12,6 @@ namespace Business.Interfaces
         Task AddGood(int categoryId, string name, string description, decimal price, string imageRef);
 
         Task DeleteGood(int goodId);
+        Task UpdateGood(int goodId, int categoryId, string name, string description, decimal price, string imageRef);
     }
 }

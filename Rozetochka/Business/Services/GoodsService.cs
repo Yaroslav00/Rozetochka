@@ -22,5 +22,9 @@ namespace Business.Services
         {
             await ItemRepository.DeleteGood(goodId);
         }
+        public async Task UpdateGood(int goodId,int categoryId, string name, string description, decimal price, string imageRef)
+        {
+            await ItemRepository.UpdateGood(goodId, categoryId, name, description, price, imageRef);
+        }
     }
 }

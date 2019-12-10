@@ -52,6 +52,14 @@ namespace DataAccess
             this.Description = Description;
             this.ImageRef = ImageRef;
         }
+        public Goods(int ID, string Name, decimal Price, string Description, int CategoryId, string ImageRef)
+        {
+            this.CategoryID = CategoryId;
+            this.Name = Name;
+            this.Price = Price;
+            this.Description = Description;
+            this.ImageRef = ImageRef;
+        }
         public Goods() { }
     }
 }
