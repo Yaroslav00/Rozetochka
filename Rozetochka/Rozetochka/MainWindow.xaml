@@ -33,11 +33,23 @@
                         <Button 
                             Name ="AddGood"
                             Content="Добавити новий товар" 
-                            Width="216" 
-                            Margin="0,5,620,4.6" 
+                            Width="216"
+                            Height="25"
+                            Margin="0,5,345,4.6" 
                             Background="#4caf50" 
                             Foreground="White"
                             Click="AddGoodButton_Click"/>
+                        <TextBox 
+                            Name="SearchBox"
+                            Margin="0,5,0,5" 
+                            Width="180" 
+                            Height="25"/>
+                        <Button 
+                            Content="Шукати" 
+                            Width="75" 
+                            Height="25"
+                            Margin="0,5,20,5"
+                            Click="SearchButton_Click"/>
                         <Label Content="Впорядкувати"  Height="30px"/>
                         <ComboBox x:Name="orderByBox" 
                             Width="180" 
