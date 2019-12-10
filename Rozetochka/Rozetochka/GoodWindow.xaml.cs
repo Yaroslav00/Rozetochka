@@ -19,7 +19,7 @@ namespace Rozetochka
         private readonly ICategoryService _categoryService;
         private readonly MainWindow.Fetch _fetch;
 
-        
+        private Uri uri = new Uri("/default.png", UriKind.Relative);
         private int selectedCatId = 0;
 
         public GoodWindow(MainWindow.Fetch fetch)
@@ -32,7 +32,15 @@ namespace Rozetochka
 
             CategorySelect.ItemsSource = _categoryService.GetCategories();
         }
-       
+        private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                uri = new Uri(openFileDialog.FileName);
+
+            }
+        }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {

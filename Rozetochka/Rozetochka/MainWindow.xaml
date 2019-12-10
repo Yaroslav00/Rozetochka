@@ -71,7 +71,7 @@
                             <DataTemplate>
                                 <Border Background="Transparent" BorderBrush="Gainsboro" BorderThickness="1" Width="220px" Height="360" CornerRadius="10,10,10,10" Margin="0,10,0,10">
                                     <StackPanel>
-                                       
+                                        <Image Source="{Binding ImageRef}" Width="160" Height="180" HorizontalAlignment="Center" Margin="20,0"/>
                                         <TextBlock FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center" Foreground="#006064"/>
                                         <TextBlock FontSize="16" Text="{Binding Price}" HorizontalAlignment="Center" />
                                         <TextBlock Text="{Binding Description}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" Height="40px" Margin="0,8,0,0" />
@@ -105,8 +105,8 @@
                       <DataTemplate>
                         <Border Background="Transparent" BorderBrush="Gainsboro" BorderThickness="1" Width="220px" Height="360" CornerRadius="10,10,10,10" Margin="0,10,0,10">
                           <StackPanel>
-                            
-                            <TextBlock FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center" Foreground="#006064"/>
+                                        <Image Source="{Binding ImageRef}" Width="160" Height="180" HorizontalAlignment="Center" Margin="20,0"/>
+                                        <TextBlock FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center" Foreground="#006064"/>
                             <TextBlock FontSize="16" Text="{Binding Price}" HorizontalAlignment="Center" />
                             <TextBlock Text="{Binding Description}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" Height="40px" Margin="0,8,0,0" />
                             <TextBlock Text="{Binding Category.Name}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" Margin="0,8,0,0" />

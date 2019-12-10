@@ -48,7 +48,7 @@
                 Width="140" 
                 Background="White"
                 Foreground="#006064" Click="Button_Click"/>
-        
+        <Button Name="btnLoadFromFile" Margin="6,110,20,0" Click="BtnLoadFromFile_Click" Width="140" Height="20" Background="White">Зображення...</Button>
         <Label Content="Назва товару" HorizontalAlignment="Left" Margin="63,126,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="Ціна" HorizontalAlignment="Left" Margin="63,171,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="Категорія" HorizontalAlignment="Left" Margin="63,222,0,0" VerticalAlignment="Top" Foreground="White"/>
