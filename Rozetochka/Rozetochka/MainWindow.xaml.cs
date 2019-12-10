@@ -224,6 +224,10 @@ namespace Rozetochka
         {
         
         }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(SearchBox.Text);
+        }
         private void PersonalInfoSaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (AreUserCredentialsValid(Password.Password, PasswordRepeat.Password))
