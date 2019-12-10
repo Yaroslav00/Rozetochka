@@ -291,6 +291,11 @@ namespace Rozetochka
                 await _userService.ChangeUserCredentials(SessionData.ID, Username.Text, Password.Password);
             }
         }
+
+        private void UserGoodsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
     public class CartedGoodDto

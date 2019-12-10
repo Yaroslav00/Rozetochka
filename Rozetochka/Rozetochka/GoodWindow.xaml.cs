@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using Business.Interfaces;
 using Business.Services;
 using DataAccess.Dto;
+using Microsoft.Win32;
 
 namespace Rozetochka
 {
@@ -18,7 +19,7 @@ namespace Rozetochka
         private readonly ICategoryService _categoryService;
         private readonly MainWindow.Fetch _fetch;
 
-
+        
         private int selectedCatId = 0;
 
         public GoodWindow(MainWindow.Fetch fetch)
@@ -31,10 +32,11 @@ namespace Rozetochka
 
             CategorySelect.ItemsSource = _categoryService.GetCategories();
         }
+       
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            await _goodsService.AddGood(selectedCatId, GoodName.Text, Description.Text, (decimal) GoodPrice.Value);
+            await _goodsService.AddGood(selectedCatId, GoodName.Text, Description.Text, (decimal) GoodPrice.Value, uri.ToString());
             _fetch();
             this.Close();
         }

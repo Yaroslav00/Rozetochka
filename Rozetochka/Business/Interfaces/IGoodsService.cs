@@ -9,7 +9,7 @@ namespace Business.Interfaces
     {
         List<GoodDto> GetGoods(int? categoryId, string orderBy);
 
-        Task AddGood(int categoryId, string name, string description, decimal price);
+        Task AddGood(int categoryId, string name, string description, decimal price, string imageRef);
 
         Task DeleteGood(int goodId);
     }

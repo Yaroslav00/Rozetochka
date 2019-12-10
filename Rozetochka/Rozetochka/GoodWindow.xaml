@@ -48,10 +48,11 @@
                 Width="140" 
                 Background="White"
                 Foreground="#006064" Click="Button_Click"/>
+        
         <Label Content="Назва товару" HorizontalAlignment="Left" Margin="63,126,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="Ціна" HorizontalAlignment="Left" Margin="63,171,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="Категорія" HorizontalAlignment="Left" Margin="63,222,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="Опис" HorizontalAlignment="Left" Margin="63,274,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Опис" HorizontalAlignment="Left" Margin="63,310,0,0" VerticalAlignment="Top" Foreground="White"/>
         <ComboBox Name="CategorySelect" HorizontalAlignment="Left" Margin="63,253,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="CategorySelect_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -65,9 +66,9 @@
             Name="Description"
             HorizontalAlignment="Left" 
             Height="100" 
-            Margin="63,300,0,0" 
+            Margin="63,335,0,0" 
             TextWrapping="Wrap" 
             VerticalAlignment="Top" 
-            Width="180"/>
+            Width="180" RenderTransformOrigin="0.492,1.24"/>
     </Grid>
 </Window>

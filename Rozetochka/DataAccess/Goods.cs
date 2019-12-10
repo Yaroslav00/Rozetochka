@@ -18,6 +18,7 @@ namespace DataAccess
         public int CategoryID { get; set; }
 
         public virtual Category Category { get; set; }
+        public string ImageRef { get; set; }
 
         public Goods(int ID, string Name, decimal Price, string Description)
         {
@@ -25,6 +26,7 @@ namespace DataAccess
             this.Name = Name;
             this.Price = Price;
             this.Description = Description;
+            this.ImageRef = ImageRef;
         }
 
         public Goods(string Name, decimal Price, string Description, int CategoryId)
@@ -34,7 +36,22 @@ namespace DataAccess
             this.Price = Price;
             this.Description = Description;
         }
-
+        public Goods(int ID, string Name, decimal Price, string Description, string ImageRef)
+        {
+            this.ID = ID;
+            this.Name = Name;
+            this.Price = Price;
+            this.Description = Description;
+            this.ImageRef = ImageRef;
+        }
+        public Goods(string Name, decimal Price, string Description, int CategoryId, string ImageRef)
+        {
+            this.CategoryID = CategoryId;
+            this.Name = Name;
+            this.Price = Price;
+            this.Description = Description;
+            this.ImageRef = ImageRef;
+        }
         public Goods() { }
     }
 }

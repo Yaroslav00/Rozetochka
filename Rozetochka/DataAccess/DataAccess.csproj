@@ -139,9 +139,9 @@
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Goods.cs" />
-    <Compile Include="Migrations\201912081427341_DataMigration.cs" />
-    <Compile Include="Migrations\201912081427341_DataMigration.designer.cs">
-      <DependentUpon>201912081427341_DataMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201912101911459_DataMigration.cs" />
+    <Compile Include="Migrations\201912101911459_DataMigration.designer.cs">
+      <DependentUpon>201912101911459_DataMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -166,8 +166,8 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912081427341_DataMigration.resx">
-      <DependentUpon>201912081427341_DataMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912101911459_DataMigration.resx">
+      <DependentUpon>201912101911459_DataMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

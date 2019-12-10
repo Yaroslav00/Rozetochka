@@ -23,7 +23,7 @@
                 Name="Goods"
                 Header="Товари" 
                 Background="White"
-                FontSize="16">
+                FontSize="16" Height="27" Margin="-2,-2,-1.667,0" VerticalAlignment="Top">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" 
                                 Height="50px" 
@@ -61,7 +61,7 @@
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          Margin="-5,-1,32,25"
                          BorderBrush="Transparent" 
-                             Height="438">
+                             Height="438" SelectionChanged="UserGoodsList_SelectionChanged">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="5" />
@@ -71,7 +71,7 @@
                             <DataTemplate>
                                 <Border Background="Transparent" BorderBrush="Gainsboro" BorderThickness="1" Width="220px" Height="360" CornerRadius="10,10,10,10" Margin="0,10,0,10">
                                     <StackPanel>
-                                        <Image Source="Placeholder.png" Width="160" Height="180" HorizontalAlignment="Center" Margin="20,0"/>
+                                       
                                         <TextBlock FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center" Foreground="#006064"/>
                                         <TextBlock FontSize="16" Text="{Binding Price}" HorizontalAlignment="Center" />
                                         <TextBlock Text="{Binding Description}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" Height="40px" Margin="0,8,0,0" />
@@ -105,7 +105,7 @@
                       <DataTemplate>
                         <Border Background="Transparent" BorderBrush="Gainsboro" BorderThickness="1" Width="220px" Height="360" CornerRadius="10,10,10,10" Margin="0,10,0,10">
                           <StackPanel>
-                            <Image Source="Placeholder.png" Width="160" Height="180" HorizontalAlignment="Center" Margin="20,0"/>
+                            
                             <TextBlock FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center" Foreground="#006064"/>
                             <TextBlock FontSize="16" Text="{Binding Price}" HorizontalAlignment="Center" />
                             <TextBlock Text="{Binding Description}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" Height="40px" Margin="0,8,0,0" />
