@@ -98,3 +98,37 @@ C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\Business\obj\Debug\Busine
 C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\Business\obj\Debug\Business.csproj.CopyComplete
 C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\Business\obj\Debug\Business.dll
 C:\Users\SirStrash\source\repos\Rozetochka1\Rozetochka\Business\obj\Debug\Business.pdb
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Business.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Business.pdb
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\DataAccess.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Unity.Container.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\EntityFramework.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Unity.Mvc5.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Unity.Abstractions.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.Mvc.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.WebPages.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.Razor.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\DataAccess.pdb
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\DataAccess.dll.config
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Unity.Container.pdb
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\EntityFramework.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\Unity.Abstractions.pdb
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.Mvc.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.WebPages.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.Razor.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\obj\Debug\Business.csprojAssemblyReference.cache
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\obj\Debug\Business.csproj.CoreCompileInputs.cache
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\obj\Debug\Business.csproj.CopyComplete
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\obj\Debug\Business.dll
+D:\Lviv National University\5 семестр\Програмна інженерія\Rozetochka\Business\obj\Debug\Business.pdb

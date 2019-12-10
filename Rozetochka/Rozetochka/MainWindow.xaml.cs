@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using DataAccess.Dto;
+using System.Linq;
 
 namespace Rozetochka
 {
@@ -122,6 +123,11 @@ namespace Rozetochka
 
         }
 
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            userGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy).Where(x => x.Name.ToLower().Contains(SearchBox.Text.ToLower()));
+            adminGoodsList.ItemsSource = _goodsService.GetGoods(null, orderBy).Where(x => x.Name.ToLower().Contains(SearchBox.Text.ToLower()));
+        }
         private void LoginLabel_MouseEnter(object sender, MouseEventArgs e)
         {
             Label loginLabel = (Label) sender;
