@@ -13,13 +13,13 @@ namespace Business.Services
             return ItemRepository.GetItems(categoryId, orderBy);
         }
 
-        /*
+        
         public async Task AddGood( int categoryId, string name, string description, decimal price, string imageRef)
         {
             await ItemRepository.AddItem(categoryId, name, description, price, imageRef);
         }
-        */
-        public async Task<int> AddGood(int categoryId, string name, string description, decimal price, string imageRef)
+        
+        public async Task<int> AddGoodWithIdReturn(int categoryId, string name, string description, decimal price, string imageRef)
         {
             int goodId = await ItemRepository.AddItem(categoryId, name, description, price, imageRef);
             return  goodId;
