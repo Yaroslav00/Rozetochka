@@ -18,6 +18,11 @@ namespace Business.Services
             await CategotyRepository.AddCategory(name);
         }
 
+        public async Task<int> AddCategoryWithIdReturn(string name)
+        {
+            int categoryId = await CategotyRepository.AddCategory(name);
+            return categoryId;
+        }
         public async Task<bool> DeleteCategory(int categoryId)
         {
             return await CategotyRepository.DeleteCategory(categoryId);

@@ -23,7 +23,7 @@ namespace DataAccess.Repository
             }
         }
 
-        public static async Task AddCategory(string name)
+        public static async Task<int> AddCategory(string name)
         {
             using (var dbContext = new ApplicationDbContext())
             {
@@ -32,6 +32,7 @@ namespace DataAccess.Repository
 
                 dbContext.Categories.Add(category);
                 await dbContext.SaveChangesAsync();
+                return category.ID;
             }
         }
 
