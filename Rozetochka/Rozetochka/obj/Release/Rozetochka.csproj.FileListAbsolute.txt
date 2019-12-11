@@ -252,3 +252,5 @@ C:\repos1\Rozetochka\Rozetochka\Rozetochka\obj\Release\Rozetochka.csproj.CoreCom
 C:\repos1\Rozetochka\Rozetochka\Rozetochka\obj\Release\Rozetochka.csproj.CopyComplete
 C:\repos1\Rozetochka\Rozetochka\Rozetochka\obj\Release\Rozetochka.exe
 C:\repos1\Rozetochka\Rozetochka\Rozetochka\obj\Release\Rozetochka.pdb
+C:\repos1\Rozetochka\Rozetochka\Rozetochka\obj\Release\UpdateGoodWindow.g.cs
+C:\repos1\Rozetochka\Rozetochka\Rozetochka\obj\Release\UpdateGoodWindow.baml

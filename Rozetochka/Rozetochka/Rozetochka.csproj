@@ -83,6 +83,9 @@
     <Compile Include="CategoryWindow.xaml.cs">
       <DependentUpon>CategoryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateGoodWindow.xaml.cs">
+      <DependentUpon>UpdateGoodWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GoodWindow.xaml.cs">
       <DependentUpon>GoodWindow.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
     </Compile>
     <Compile Include="SessionData.cs" />
     <Page Include="CategoryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UpdateGoodWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

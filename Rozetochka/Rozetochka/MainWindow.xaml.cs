@@ -168,7 +168,14 @@ namespace Rozetochka
 
             Fetch_Data();
         }
+        private void GoodUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var good = btn.DataContext as GoodDto;
+            UpdateGoodWindow goodWindow = new UpdateGoodWindow(fetch_delegate, good.ID);
+            goodWindow.ShowDialog();
 
+        }
         private async void ConfirmOrderButton_Click(object sender, RoutedEventArgs e)
         {
             if (SessionData.ID > 0)
