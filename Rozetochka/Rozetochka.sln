@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{E066AB07-B24F-4ED2-9D43-1FB3AF4815FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RozetochkaUnitTest", "RozetochkaUnitTest\RozetochkaUnitTest.csproj", "{B546A192-EC48-428E-980A-D294BA0DD4BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RozetochkaAPI", "RozetochkaAPI\RozetochkaAPI.csproj", "{96DFAD6D-CA37-49FF-9C1B-8C6D62F96582}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{E066AB07-B24F-4ED2-9D43-1FB3AF4815FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E066AB07-B24F-4ED2-9D43-1FB3AF4815FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E066AB07-B24F-4ED2-9D43-1FB3AF4815FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B546A192-EC48-428E-980A-D294BA0DD4BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B546A192-EC48-428E-980A-D294BA0DD4BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B546A192-EC48-428E-980A-D294BA0DD4BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B546A192-EC48-428E-980A-D294BA0DD4BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96DFAD6D-CA37-49FF-9C1B-8C6D62F96582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96DFAD6D-CA37-49FF-9C1B-8C6D62F96582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96DFAD6D-CA37-49FF-9C1B-8C6D62F96582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96DFAD6D-CA37-49FF-9C1B-8C6D62F96582}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -61,14 +61,16 @@ namespace DataAccess.Repository
             }
         }
 
-        public static async Task AddItem(int categoryId, string name, string description, decimal price, string imageref)
+        public static async Task<int> AddItem(int categoryId, string name, string description, decimal price, string imageref)
         {
             using (var dbContext = new ApplicationDbContext())
             {
                 var item = new Goods(name, price, description, categoryId, imageref);
                 dbContext.Merchandise.Add(item);
                 await dbContext.SaveChangesAsync();
+                return item.ID;
             };
+            
         }
 
         public static async Task DeleteGood(int goodId)
