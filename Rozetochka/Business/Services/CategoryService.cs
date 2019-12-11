@@ -13,16 +13,18 @@ namespace Business.Services
             return CategotyRepository.GetCategories();
         }
 
-        public async Task AddCategory(string name)
+        public async Task<int> AddCategory(string name)
         {
-            await CategotyRepository.AddCategory(name);
+            int categoryId = await CategotyRepository.AddCategory(name);
+            return categoryId;
         }
-
+        /*
         public async Task<int> AddCategoryWithIdReturn(string name)
         {
             int categoryId = await CategotyRepository.AddCategory(name);
             return categoryId;
         }
+        */
         public async Task<bool> DeleteCategory(int categoryId)
         {
             return await CategotyRepository.DeleteCategory(categoryId);

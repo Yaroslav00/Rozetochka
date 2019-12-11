@@ -30,7 +30,7 @@ namespace RozetochkaUnitTest
             string testFGoodImageRef = "TestImageRef";
             var pre_goods = _goodService.GetGoods(1, "За алфавітом");
             var pre_count = pre_goods.Count;
-            int goodId = await _goodService.AddGoodWithIdReturn(testGategoryId, testGoodName, testGoodDescription, testGoodPrice, testFGoodImageRef);
+            int goodId = await _goodService.AddGood(testGategoryId, testGoodName, testGoodDescription, testGoodPrice, testFGoodImageRef);
            
             var post_goods = _goodService.GetGoods(1, "За алфавітом");
            
@@ -51,7 +51,7 @@ namespace RozetochkaUnitTest
             string testFGoodImageRef = "TestImageRef";
          
             
-            int goodId = await _goodService.AddGoodWithIdReturn(testGategoryId, testGoodName, testGoodDescription, testGoodPrice, testFGoodImageRef);
+            int goodId = await _goodService.AddGood(testGategoryId, testGoodName, testGoodDescription, testGoodPrice, testFGoodImageRef);
 
             var preGood = _goodService.GetGoods(1, "За алфавітом").Find(g => g.ID == goodId);
             decimal newPrice = 100;

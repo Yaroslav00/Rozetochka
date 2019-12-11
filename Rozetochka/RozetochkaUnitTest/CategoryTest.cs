@@ -25,7 +25,7 @@ namespace RozetochkaUnitTest
             string testCategoryName = "TestName";
             var pre_categories = _categoryService.GetCategories();
             var pre_count = pre_categories.Count;
-            int categoryId = await _categoryService.AddCategoryWithIdReturn(testCategoryName);
+            int categoryId = await _categoryService.AddCategory(testCategoryName);
             var post_categories = _categoryService.GetCategories();
             var post_count = post_categories.Count;
             Assert.IsTrue(pre_count == post_count - 1);
